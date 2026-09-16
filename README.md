@@ -85,18 +85,12 @@ The tracked logo matches the current official Klock Holding Co. profile image on
 
 `.github/workflows/deploy-pages.yml` validates and deploys the static `dist/` directory whenever `main` is updated. `astro.config.mjs` uses the custom production origin, so canonical URLs and the sitemap point to `https://www.klockholdingco.com`.
 
-One-time repository setup:
+The public repository is [jklock/KlockHoldingCo_GithubSites](https://github.com/jklock/KlockHoldingCo_GithubSites). GitHub Pages uses the Actions workflow, and the repository custom domain is set to `www.klockholdingco.com`.
 
-1. Create the GitHub repository and push this repository with the default branch named `main`.
-2. In the GitHub repository, open **Settings → Pages**.
-3. Under **Build and deployment → Source**, choose **GitHub Actions**.
-4. Under **Custom domain**, enter `www.klockholdingco.com` and save it.
-5. Wait for the deployment workflow to complete, then enable **Enforce HTTPS** when GitHub makes it available.
+DNS changes must still be made manually with the DNS provider:
 
-DNS changes must be made manually with the DNS provider:
-
-1. Create a `CNAME` record named `www` that points directly to `<github-owner>.github.io` (replace the placeholder with the repository owner; do not append the repository name).
-2. To redirect `klockholdingco.com` to `www.klockholdingco.com`, also configure the apex with the `A`, `AAAA`, `ALIAS`, or `ANAME` records currently documented by GitHub Pages. Do not copy old IP addresses from third-party tutorials.
+1. Replace the current `www` record with a `CNAME` record named `www` pointing directly to `jklock.github.io` (do not append the repository name).
+2. Replace the current apex records with `A` records for `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, and `185.199.111.153` so `klockholdingco.com` redirects to `www.klockholdingco.com`.
 3. Remove conflicting records for the same host. Avoid wildcard DNS records.
 4. DNS and certificate issuance can take time. Confirm the domain check in GitHub Pages settings before enforcing HTTPS.
 
