@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="The requested page could not be found."
+  noindex
+>
+  <section class="not-found section-dark">
+    <div class="shell">
+      <p class="error-code">404</p>
+      <p class="eyebrow">Page not found</p>
+      <h1>This path ends here.</h1>
+      <p class="lede">
+        The page may have moved, or the address may be incomplete.
+      </p>
+      <a class="button" href="/">
+        Return home <Icon name="arrow" size={17} />
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: 68vh;
+    padding-block: clamp(5rem, 12vw, 10rem);
+  }
+  .error-code {
+    margin: 0;
+    color: #3c4037;
+    font-family: ui-monospace, monospace;
+    font-size: clamp(6rem, 22vw, 17rem);
+    font-weight: 900;
+    line-height: 0.7;
+    letter-spacing: -0.1em;
+  }
+  .not-found h1 {
+    margin-block: 1rem;
+    font-size: clamp(3rem, 7vw, 6rem);
+  }
+  .not-found .lede {
+    margin-bottom: 2rem;
+    color: #bdc0b6;
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+import { site } from '../site-config';
+import navigation from '../content/site/navigation.json';
+---
+
+<header class="site-header">
+  <a class="skip-link" href="#main-content">
+    Skip to content
+  </a>
+  <nav id="primary-nav" aria-label="Primary navigation">
+    <a class="home-link" href="/">
+      {navigation.home}
+    </a>
+    <a href="/gear/">
+      <span class="wide-label">{navigation.customerBuilds}</span>
+      <span class="compact-label">{navigation.customerBuildsShort}</span>
+    </a>
+    <a href="/about/">{navigation.about}</a>
+    <a href={site.social.pewcentric} target="_blank" rel="noreferrer">
+      {navigation.shop}
+    </a>
+  </nav>
+</header>

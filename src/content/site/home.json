@@ -1,0 +1,29 @@
+{
+  "metaDescription": "Customizable, maker-driven competition gear, open-source designs, how-to videos, and SplitShot software from Klock Holding Co.",
+  "heroEyebrow": "Maker-driven competition gear",
+  "heroHeading": "Built for shooters who want it their way.",
+  "heroText": "Klock Holding Co. is a one-man shop making customizable belts, attachments, and 3D-printed gear for competitive shooters. The design files are shared openly; finished gear is available for the people who would rather buy than build.",
+  "linksEyebrow": "Go where you need to go",
+  "linksHeading": "Products, files, and how-to.",
+  "destinations": [
+    {
+      "label": "Shop the gear",
+      "name": "Pewcentric",
+      "description": "Made-to-order belts, attachments, and finished competition gear."
+    },
+    {
+      "label": "Download the designs",
+      "name": "Printables",
+      "description": "Free design files to print, modify, adapt, and improve."
+    },
+    {
+      "label": "Watch the how-to",
+      "name": "YouTube",
+      "description": "Gear assembly, setup walkthroughs, and practical how-to videos."
+    }
+  ],
+  "splitshotEyebrow": "Software for match video",
+  "splitshotHeading": "SplitShot",
+  "splitshotText": "A local-first tool for analyzing competition shooting video, reviewing shot timing, and exporting finished match footage.",
+  "splitshotButton": "View SplitShot on GitHub"
+}

@@ -1,0 +1,283 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/brand/klock-holding-co-logo.png';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import PhotoCarousel from '../components/PhotoCarousel.astro';
+import home from '../content/site/home.json';
+import { site } from '../site-config';
+
+const destinationIcons = ['external', 'printables', 'youtube'] as const;
+const splitshotModules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/splitshot-gallery/*.{jpg,jpeg,png,webp,avif}',
+  { eager: true },
+);
+const splitshotPhotos = Object.entries(splitshotModules)
+  .sort(([left], [right]) => left.localeCompare(right))
+  .map(([path, photo]) => ({
+    src: photo.default,
+    alt: (path.split('/').pop() ?? 'SplitShot')
+      .replace(/\.[^.]+$/, '')
+      .replace(/[-_]+/g, ' ')
+      .replace(/\b\w/g, (character) => character.toUpperCase()),
+  }));
+---
+
+<BaseLayout description={home.metaDescription}>
+  <section class="hub-hero section-dark">
+    <div class="shell hero-inner">
+      <Image
+        class="hero-logo"
+        src={logo}
+        alt="Klock Holding Co. circular logo with a seated raccoon and the words Holding your junk securely since 2026."
+        widths={[240, 360, 480]}
+        sizes="(max-width: 720px) 13rem, 20rem"
+        format="webp"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="hero-copy">
+        <p class="eyebrow">{home.heroEyebrow}</p>
+        <h1>{home.heroHeading}</h1>
+        <p class="lede">{home.heroText}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hub-links" aria-labelledby="destinations-title">
+    <div class="shell">
+      <div class="hub-heading">
+        <p class="eyebrow">{home.linksEyebrow}</p>
+        <h2 id="destinations-title">{home.linksHeading}</h2>
+      </div>
+      <div class="destination-list">
+        {home.destinations.map((item, index) => (
+          <div class="destination">
+            <span class="destination-number">0{index + 1}</span>
+            <span class="destination-icon">
+              <Icon name={destinationIcons[index]} size={24} />
+            </span>
+            <span class="destination-copy">
+              <small>{item.label}</small>
+              <strong>{item.name}</strong>
+              <span>{item.description}</span>
+            </span>
+          </div>
+        ))}
+      </div>
+
+      <aside class="splitshot-note section-dark">
+        <PhotoCarousel label="SplitShot screenshots" photos={splitshotPhotos} />
+        <div class="splitshot-copy">
+          <p class="eyebrow">{home.splitshotEyebrow}</p>
+          <h3>{home.splitshotHeading}</h3>
+          <p>{home.splitshotText}</p>
+          <a
+            class="button"
+            href={site.social.splitshot}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {home.splitshotButton} <Icon name="external" size={16} />
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hub-hero {
+    padding-block: clamp(2.5rem, 6vw, 5.5rem);
+  }
+
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(12rem, 19rem) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .hero-logo {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    filter: drop-shadow(0 1.5rem 2.5rem rgb(0 0 0 / 28%));
+  }
+
+  .hero-copy,
+  .hero-copy h1,
+  .hero-copy .lede {
+    max-width: none;
+  }
+
+  .hero-copy h1 {
+    margin-bottom: 1.25rem;
+    font-size: clamp(2.25rem, 4.4vw, 4.5rem);
+  }
+
+  .hero-copy .lede {
+    margin-bottom: 0;
+    color: #c8c4bd;
+  }
+
+  .hub-links {
+    padding-block: clamp(3rem, 7vw, 6rem);
+    background: var(--paper);
+  }
+
+  .hub-heading {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.45fr) minmax(0, 1.55fr);
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 2rem;
+  }
+
+  .hub-heading p,
+  .hub-heading h2 {
+    max-width: none;
+    margin-bottom: 0;
+  }
+
+  .destination-list {
+    border-top: 1px solid var(--line);
+  }
+
+  .destination {
+    display: grid;
+    grid-template-columns: 2.25rem 3.25rem minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: center;
+    padding-block: clamp(1.25rem, 2.5vw, 1.8rem);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .destination-number {
+    color: var(--muted);
+    font-family: ui-monospace, monospace;
+    font-size: 0.78rem;
+  }
+
+  .destination-icon {
+    display: grid;
+    width: 3.25rem;
+    height: 3.25rem;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--accent);
+  }
+
+  .destination-copy {
+    display: grid;
+    grid-template-columns: minmax(0, 0.45fr) minmax(0, 1fr);
+    gap: 0.25rem 2rem;
+    align-items: center;
+    min-width: 0;
+  }
+
+  .destination-copy small {
+    grid-column: 1;
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+  }
+
+  .destination-copy strong {
+    grid-column: 1;
+    font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+    line-height: 1.1;
+  }
+
+  .destination-copy > span {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    min-width: 0;
+    color: var(--muted);
+    overflow-wrap: anywhere;
+  }
+
+  .splitshot-note {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.65fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: center;
+    margin-top: 3rem;
+    padding: clamp(1rem, 3vw, 2rem);
+    border: 1px solid #383b34;
+  }
+
+  .splitshot-copy {
+    min-width: 0;
+  }
+
+  .splitshot-copy h3 {
+    margin-bottom: 0.65rem;
+    font-size: clamp(1.7rem, 3vw, 2.5rem);
+  }
+
+  .splitshot-copy > p:not(.eyebrow) {
+    margin-bottom: 1.5rem;
+    color: #c8c4bd;
+  }
+
+  @media (max-width: 60rem) {
+    .hero-inner,
+    .hub-heading,
+    .splitshot-note {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-logo {
+      width: min(13rem, 48vw);
+    }
+
+    .destination-copy {
+      grid-template-columns: minmax(0, 0.6fr) minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .hub-hero,
+    .hub-links {
+      padding-block: 2.5rem;
+    }
+
+    .hero-inner {
+      gap: 1.75rem;
+    }
+
+    .hero-logo {
+      width: min(10rem, 42vw);
+    }
+
+    .destination {
+      grid-template-columns: 2.6rem minmax(0, 1fr);
+      gap: 0.85rem;
+    }
+
+    .destination-number {
+      display: none;
+    }
+
+    .destination-icon {
+      width: 2.6rem;
+      height: 2.6rem;
+    }
+
+    .destination-copy {
+      grid-template-columns: 1fr;
+    }
+
+    .destination-copy > span,
+    .destination-copy small,
+    .destination-copy strong {
+      grid-column: 1;
+      grid-row: auto;
+    }
+  }
+</style>

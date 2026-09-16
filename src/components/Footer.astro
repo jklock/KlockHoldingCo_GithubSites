@@ -1,0 +1,53 @@
+---
+import Icon from './Icon.astro';
+import { site } from '../site-config';
+
+const links = [
+  {
+    label: 'Pewcentric',
+    href: site.social.pewcentric,
+    icon: 'shop' as const,
+  },
+  {
+    label: 'Printables',
+    href: site.social.printables,
+    icon: 'printables' as const,
+  },
+  {
+    label: 'YouTube',
+    href: site.social.youtube,
+    icon: 'youtube' as const,
+  },
+  {
+    label: 'Instagram',
+    href: site.social.instagram,
+    icon: 'instagram' as const,
+  },
+  {
+    label: 'Facebook',
+    href: site.social.facebook,
+    icon: 'facebook' as const,
+  },
+  {
+    label: 'GitHub — SplitShot',
+    href: site.social.splitshot,
+    icon: 'github' as const,
+  },
+];
+---
+
+<footer class="site-footer">
+  <nav class="footer-links" aria-label="Klock Holding Co. links">
+    {links.map((link) => (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noreferrer"
+        aria-label={link.label}
+        title={link.label}
+      >
+        <Icon name={link.icon} size={26} />
+      </a>
+    ))}
+  </nav>
+</footer>
