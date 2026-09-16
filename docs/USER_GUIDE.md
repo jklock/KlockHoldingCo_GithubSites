@@ -40,14 +40,14 @@ Edit `src/content/site/home.json`.
 
 The main logo is `src/assets/brand/klock-holding-co-logo.png`.
 
-### Change the SplitShot carousel
+### Change the SplitShot screenshot row
 
 1. Put original screenshots in `photos-originals/splitshot/`.
 2. Use descriptive filenames such as `review-timeline.png`; filenames become visible captions.
 3. Run `npm run photos:prepare`.
 4. Refresh the local site.
 
-The prepared files are written to `src/assets/splitshot-gallery/`. Remove a prepared file from that directory to remove it from the carousel. The originals folder is intentionally ignored by Git so large source files are never pushed.
+The prepared files are written to `src/assets/splitshot-gallery/`. The home page displays the first four files alphabetically in a compact row beneath the SplitShot description. Keep exactly four prepared files in this directory to control the complete row. Remove a prepared file from that directory to remove it from the page. The originals folder is intentionally ignored by Git so large source files are never pushed.
 
 ## Edit the Customer Build Photos page
 

@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import logo from '../assets/brand/klock-holding-co-logo.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
-import PhotoCarousel from '../components/PhotoCarousel.astro';
+import SplitShotGallery from '../components/SplitShotGallery.astro';
 import home from '../content/site/home.json';
 import { site } from '../site-config';
 
@@ -67,8 +67,7 @@ const splitshotPhotos = Object.entries(splitshotModules)
         ))}
       </div>
 
-      <aside class="splitshot-note section-dark">
-        <PhotoCarousel label="SplitShot screenshots" photos={splitshotPhotos} />
+      <aside id="splitshot" class="splitshot-note section-dark">
         <div class="splitshot-copy">
           <p class="eyebrow">{home.splitshotEyebrow}</p>
           <h3>{home.splitshotHeading}</h3>
@@ -82,6 +81,10 @@ const splitshotPhotos = Object.entries(splitshotModules)
             {home.splitshotButton} <Icon name="external" size={16} />
           </a>
         </div>
+        <SplitShotGallery
+          label="SplitShot screenshots"
+          photos={splitshotPhotos}
+        />
       </aside>
     </div>
   </section>
@@ -202,10 +205,6 @@ const splitshotPhotos = Object.entries(splitshotModules)
   }
 
   .splitshot-note {
-    display: grid;
-    grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.65fr);
-    gap: clamp(1.5rem, 4vw, 3rem);
-    align-items: center;
     margin-top: 3rem;
     padding: clamp(1rem, 3vw, 2rem);
     border: 1px solid #383b34;
@@ -227,8 +226,7 @@ const splitshotPhotos = Object.entries(splitshotModules)
 
   @media (max-width: 60rem) {
     .hero-inner,
-    .hub-heading,
-    .splitshot-note {
+    .hub-heading {
       grid-template-columns: 1fr;
     }
 

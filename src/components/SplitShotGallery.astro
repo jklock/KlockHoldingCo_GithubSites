@@ -1,0 +1,75 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Photo {
+  alt: string;
+  src: ImageMetadata;
+}
+
+interface Props {
+  label: string;
+  photos: Photo[];
+}
+
+const { label, photos } = Astro.props;
+---
+
+{photos.length > 0 && (
+  <section class="screenshot-gallery" aria-label={label}>
+    {photos.slice(0, 4).map((photo) => (
+      <figure>
+        <Image
+          src={photo.src}
+          alt={photo.alt}
+          widths={[320, 480]}
+          sizes="(max-width: 640px) 50vw, 25vw"
+          format="webp"
+          quality={72}
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>{photo.alt}</figcaption>
+      </figure>
+    ))}
+  </section>
+)}
+
+<style>
+  .screenshot-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.5rem, 1.5vw, 1rem);
+    margin-top: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  figure {
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid #383b34;
+    background: #0e100d;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 14 / 9;
+    object-fit: cover;
+    object-position: top left;
+  }
+
+  figcaption {
+    padding: 0.5rem 0.6rem;
+    color: #b9bcb1;
+    font-size: 0.75rem;
+    line-height: 1.25;
+  }
+
+  @media (max-width: 46rem) {
+    .screenshot-gallery {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
