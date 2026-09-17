@@ -1,9 +1,13 @@
 export const site = {
   name: 'Klock Holding Co.',
   shortName: 'KHC',
+  author: 'Klock Holding Co.',
+  locale: 'en_US',
   description:
-    'Customizable, maker-driven competition gear, open-source designs, and software from Klock Holding Co.',
+    'Customizable 3D-printed competition shooting gear, open-source designs, how-to videos, and SplitShot software from Klock Holding Co.',
   url: 'https://www.klockholdingco.com',
+  defaultImage: '/favicon.png',
+  defaultImageAlt: 'Klock Holding Co. logo',
   email: null,
   navigation: [
     { href: '/', label: 'Home' },

@@ -16,7 +16,8 @@
     "format:check": "prettier --check .",
     "photos:prepare": "node scripts/prepare-photos.mjs",
     "test:links": "node scripts/check-links.mjs",
-    "test": "npm run check && npm run lint && npm run build && npm run test:links"
+    "test:seo": "node scripts/check-seo.mjs",
+    "test": "npm run check && npm run lint && npm run build && npm run test:links && npm run test:seo"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.4",

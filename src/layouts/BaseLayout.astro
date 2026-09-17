@@ -8,16 +8,20 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   type?: 'website' | 'article' | 'product';
+  pageType?: 'WebPage' | 'AboutPage' | 'CollectionPage';
   noindex?: boolean;
-  structuredData?: Record<string, unknown>;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const {
   title,
   description = site.description,
-  image,
+  image = site.defaultImage,
+  imageAlt = site.defaultImageAlt,
   type = 'website',
+  pageType = 'WebPage',
   noindex = false,
   structuredData,
 } = Astro.props;
@@ -25,12 +29,55 @@ const pageTitle = title
   ? `${title} | ${site.name}`
   : `${site.name} | Competition gear, open designs & software`;
 const canonical = new URL(Astro.url.pathname, site.url);
+const imageUrl = new URL(image, site.url);
 const organizationData = {
-  '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': `${site.url}/#organization`,
   name: site.name,
   url: site.url,
+  description: site.description,
+  logo: {
+    '@type': 'ImageObject',
+    url: new URL(site.defaultImage, site.url),
+  },
   sameAs: Object.values(site.social),
+};
+const websiteData = {
+  '@type': 'WebSite',
+  '@id': `${site.url}/#website`,
+  url: site.url,
+  name: site.name,
+  description: site.description,
+  publisher: { '@id': `${site.url}/#organization` },
+  inLanguage: 'en-US',
+};
+const webpageData = {
+  '@type': pageType,
+  '@id': `${canonical.href}#webpage`,
+  url: canonical,
+  name: pageTitle,
+  description,
+  isPartOf: { '@id': `${site.url}/#website` },
+  about: { '@id': `${site.url}/#organization` },
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: imageUrl,
+  },
+  inLanguage: 'en-US',
+};
+const additionalStructuredData = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : [];
+const schemaGraph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    organizationData,
+    websiteData,
+    webpageData,
+    ...additionalStructuredData,
+  ],
 };
 ---
 
@@ -41,29 +88,37 @@ const organizationData = {
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#151714" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="author" content={site.author} />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex" />}
+    <meta
+      name="robots"
+      content={
+        noindex
+          ? 'noindex, follow'
+          : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+      }
+    />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta property="og:type" content={type} />
+    <meta property="og:locale" content={site.locale} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    {image && <meta property="og:image" content={new URL(image, site.url)} />}
-    <meta
-      name="twitter:card"
-      content={image ? 'summary_large_image' : 'summary'}
-    />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
     <title>{pageTitle}</title>
     <script
       is:inline
       type="application/ld+json"
-      set:html={JSON.stringify(
-        structuredData ? [organizationData, structuredData] : organizationData,
-      )}
+      set:html={JSON.stringify(schemaGraph)}
     ></script>
   </head>
   <body>

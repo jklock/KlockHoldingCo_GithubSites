@@ -71,7 +71,7 @@ Edit `src/content/site/builds.json`.
 ### Add customer build photos
 
 1. Copy JPEG, PNG, WebP, or AVIF originals into `photos-originals/customer-builds/`.
-2. Give each file a descriptive name, such as `orange-idpa-belt-jane-doe.jpg`. The filename becomes its caption and alternative text.
+2. Give each file a descriptive local name, such as `orange-idpa-belt-jane-doe.jpg`. Filenames are not shown publicly.
 3. Run:
 
    ```sh
@@ -81,7 +81,7 @@ Edit `src/content/site/builds.json`.
 4. Preview the gallery locally.
 5. Commit the generated files under `src/assets/gear-gallery/`; do not commit `photos-originals/`.
 
-The preparation command corrects camera rotation, limits the longest edge to 1600 pixels, converts the image to WebP, and lowers quality further only when needed to keep a prepared file near or below 900 KB. During the site build, Astro creates 320-pixel and 640-pixel responsive thumbnails. Browsers lazy-load those thumbnails, and off-screen gallery cards use `content-visibility` so a large gallery does not render all at once.
+The preparation command corrects camera rotation, limits the longest edge to 1600 pixels, converts the image to WebP, and lowers quality further only when needed to keep a prepared file near or below 900 KB. During the site build, Astro creates 320-pixel and 640-pixel responsive thumbnails. Browsers lazy-load those thumbnails, and off-screen gallery tiles use `content-visibility` so a large gallery does not render all at once. Clicking a tile loads the full prepared image in the gallery viewer.
 
 To remove a customer photo, delete its matching `.webp` file from `src/assets/gear-gallery/`.
 
@@ -106,7 +106,25 @@ npm run photos:prepare
 npm test
 ```
 
-`npm test` checks the content, code, formatting rules, production build, and internal links. Do not publish if it fails.
+`npm test` checks the content, code, formatting rules, production build, internal links, and required SEO metadata. Do not publish if it fails.
+
+## Google Search indexing
+
+The production build automatically provides:
+
+- indexable page metadata, canonical URLs, social preview images, and structured data;
+- `robots.txt` with no crawl blocks;
+- `sitemap-index.xml` for public pages;
+- `image-sitemap.xml` for customer build photos.
+
+After the first deployment or a major URL change, sign in to [Google Search Console](https://search.google.com/search-console/), add the `klockholdingco.com` domain property, and complete Google’s DNS ownership verification. Submit both sitemap URLs under **Indexing → Sitemaps**:
+
+```text
+https://www.klockholdingco.com/sitemap-index.xml
+https://www.klockholdingco.com/image-sitemap.xml
+```
+
+Use **URL inspection** to test and request indexing for the homepage, About page, and Customer Builds page. Search Console reports Google’s crawl and indexing decisions; appearing or ranking in results is controlled by Google and may take time after submission.
 
 ## Publish an edit to GitHub
 

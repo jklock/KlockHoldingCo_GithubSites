@@ -43,7 +43,8 @@ Useful commands:
 | `npm run format:check`   | Verify formatting without changing files              |
 | `npm run photos:prepare` | Convert local originals into bounded WebP site assets |
 | `npm run test:links`     | Check links and assets inside the generated site      |
-| `npm test`               | Run checks, lint, build, and internal-link validation |
+| `npm run test:seo`       | Check crawl files, metadata, schema, and indexability |
+| `npm test`               | Run the complete production validation suite          |
 
 ## Repository structure
 
@@ -84,6 +85,8 @@ The tracked logo matches the current official Klock Holding Co. profile image on
 ## Deployment to GitHub Pages
 
 `.github/workflows/deploy-pages.yml` validates and deploys the static `dist/` directory whenever `main` is updated. `astro.config.mjs` uses the custom production origin, so canonical URLs and the sitemap point to `https://www.klockholdingco.com`.
+
+The build publishes `robots.txt`, a page sitemap, a customer-photo image sitemap, canonical URLs, Open Graph and Twitter metadata, and Schema.org graphs. Google Search Console ownership verification and sitemap submission remain account-owner actions; follow the [website editing guide](docs/USER_GUIDE.md#google-search-indexing).
 
 The public repository is [jklock/KlockHoldingCo_GithubSites](https://github.com/jklock/KlockHoldingCo_GithubSites). GitHub Pages uses the Actions workflow, and the repository custom domain is set to `www.klockholdingco.com`.
 

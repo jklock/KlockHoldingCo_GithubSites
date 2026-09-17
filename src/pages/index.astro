@@ -24,7 +24,11 @@ const splitshotPhotos = Object.entries(splitshotModules)
   }));
 ---
 
-<BaseLayout description={home.metaDescription}>
+<BaseLayout
+  description={home.metaDescription}
+  image={logo.src}
+  imageAlt="Klock Holding Co. logo"
+>
   <section class="hub-hero section-dark">
     <div class="shell hero-inner">
       <Image

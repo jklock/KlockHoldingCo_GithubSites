@@ -5,7 +5,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import about from '../content/site/about.json';
 ---
 
-<BaseLayout title="About Me" description={about.metaDescription}>
+<BaseLayout
+  title="About the Maker"
+  description={about.metaDescription}
+  image={aboutPhoto.src}
+  imageAlt={about.photoAlt}
+  pageType="AboutPage"
+>
   <header class="about-hero section-dark">
     <div class="shell about-hero-grid">
       <div class="about-intro">

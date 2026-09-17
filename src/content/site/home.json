@@ -1,5 +1,5 @@
 {
-  "metaDescription": "Customizable, maker-driven competition gear, open source designs, how-to videos, and (sick nasty) SplitShot software from Klock Holding Co.",
+  "metaDescription": "Customizable 3D-printed competition shooting belts, attachments, free open-source designs, assembly videos, and SplitShot software from Klock Holding Co.",
   "heroEyebrow": "Maker-driven competition gear",
   "heroHeading": "Built for shooters who want it their way.",
   "heroText": "Klock Holding Co. is my one-man shop making customizable belts, attachments, and 3D-printed accessories for competitive shooters. All STL files are open sourced; finished gear is available for the people who would rather buy than build.",
@@ -24,6 +24,6 @@
   ],
   "splitshotEyebrow": "Software for editing your match footage simplified ",
   "splitshotHeading": "SplitShot",
-  "splitshotText": "A local-first open sourcetool for analyzing / editing competition shooting video. It's pretty cool",
+  "splitshotText": "A local-first open-source tool for analyzing and editing competition shooting video. It's pretty cool.",
   "splitshotButton": "View SplitShot on GitHub"
 }

@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://www.klockholdingco.com/sitemap-index.xml
+Sitemap: https://www.klockholdingco.com/image-sitemap.xml
