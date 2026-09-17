@@ -1,18 +1,18 @@
 {
-  "metaDescription": "Meet the competitive shooter and 3D designer behind Klock Holding Co. and the customizable, open-source gear he makes.",
+  "metaDescription": "Meet the semi-competitive shooter and 3D designer behind Klock Holding Co. and the customizable, open-source gear he makes.",
   "heroEyebrow": "About me",
-  "heroHeading": "I’m the shooter and maker behind Klock Holding Co.",
-  "heroText": "I design the competition gear I want to use, print it, shoot with it, fix what does not work, and keep iterating.",
-  "photoAlt": "The Klock Holding Co. maker seated at a workbench with a black-and-white dog and an orange-and-black competition belt.",
-  "storyEyebrow": "How this started",
-  "storyHeading": "I was solving problems with my own setup.",
+  "heroHeading": "I’m the really cool dude behind Klock Holding Co.",
+  "heroText": "I design the competition gear I want to use. I print it, shoot with it, fix what does not work, and keep iterating. I'm chasing the most comfortable, performant, and extensible shooting rig I can.",
+  "photoAlt": "The Klock Holding Co. maker seated at a desk with a black-and-white dog and an orange-and-black competition belt.",
+  "storyEyebrow": "How all this started",
+  "storyHeading": "I was solving problems with my own setup and respond to complaints that people had about their own.",
   "storyParagraphs": [
-    "I wanted a stiff, segmented competition belt with the things I liked about systems such as the Lynx, but designed around IDPA requirements. I also have weird hips, which made several common belt attachments uncomfortable. That sent me down the rabbit hole of designing my own belt, attachments, and mounts.",
+    "I wanted a stiff, segmented competition belt with the things I liked about other commercial injected molded belt systems but designed around the IDPA rule book. I also have weird hips, which made several common belt attachments uncomfortable. That sent me down the rabbit hole of designing my own belt, attachments, and mounts.",
     "Those personal projects grew into a collection of gear for both USPSA and IDPA. Everything still follows the same process: design it, print it, use it in competition, change what does not work, and make the next version better."
   ],
   "openHeading": "Open designs are part of the point.",
   "openParagraphs": [
-    "Competition gear should not be one-size-fits-all. Shooters have different bodies, equipment, divisions, and ideas about how a setup should work, so I share my design files free of charge. Other makers can print them, adapt them to different hardware, make replacement parts, or improve on the original.",
+    "Competition gear should not be one-size-fits-all or locked behind an expensive paywall. Shooters have different bodies, equipment, divisions, and ideas about how a setup should work, so I share my design files free of charge. Other makers can print them, adapt them to different hardware, make replacement parts, or improve on the original. It is important to me with all Klock Holding Co. products that users can source and print their own replacement parts without needing to spend more money with me to get them. ",
     "If you do not have a printer—or simply do not want to source and build everything yourself—I also make finished, customizable versions to order through Pewcentric."
   ]
 }
