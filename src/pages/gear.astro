@@ -11,16 +11,7 @@ const photoModules = import.meta.glob<{ default: ImageMetadata }>(
 
 const photos = Object.entries(photoModules)
   .sort(([left], [right]) => left.localeCompare(right))
-  .map(([path, photo]) => {
-    const filename =
-      path.split('/').pop() ?? 'Klock Holding Co. customer build';
-    const caption = filename
-      .replace(/\.[^.]+$/, '')
-      .replace(/[-_]+/g, ' ')
-      .replace(/\b\w/g, (character) => character.toUpperCase());
-
-    return { caption, src: photo.default };
-  });
+  .map(([, photo]) => ({ src: photo.default }));
 ---
 
 <BaseLayout title="Customer Build Photos" description={builds.metaDescription}>
@@ -45,21 +36,26 @@ const photos = Object.entries(photoModules)
   >
     <div class="shell">
       {photos.length > 0 ? (
-        <div class="gear-grid">
-          {photos.map((photo) => (
-            <figure>
+        <div class="gear-grid" data-gallery>
+          {photos.map((photo, index) => (
+            <button
+              class="gallery-tile"
+              type="button"
+              data-gallery-index={index}
+              data-full-src={photo.src.src}
+              aria-label={`Open customer build photo ${index + 1}`}
+            >
               <Image
                 src={photo.src}
-                alt={photo.caption}
+                alt={`Customer build photo ${index + 1}`}
                 widths={[320, 640]}
-                sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
+                sizes="33vw"
                 format="webp"
                 quality={72}
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption>{photo.caption}</figcaption>
-            </figure>
+            </button>
           ))}
         </div>
       ) : (
@@ -71,7 +67,87 @@ const photos = Object.entries(photoModules)
       )}
     </div>
   </section>
+
+  <dialog
+    class="lightbox"
+    data-lightbox
+    aria-label="Customer build photo viewer"
+  >
+    <button
+      class="lightbox-close"
+      type="button"
+      data-lightbox-close
+      aria-label="Close photo viewer"
+    >
+      ×
+    </button>
+    <button
+      class="lightbox-nav lightbox-previous"
+      type="button"
+      data-lightbox-previous
+      aria-label="Previous photo"
+    >
+      ‹
+    </button>
+    <img data-lightbox-image alt="" />
+    <button
+      class="lightbox-nav lightbox-next"
+      type="button"
+      data-lightbox-next
+      aria-label="Next photo"
+    >
+      ›
+    </button>
+  </dialog>
 </BaseLayout>
+
+<script>
+  const gallery = document.querySelector<HTMLElement>('[data-gallery]');
+  const lightbox = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+  const lightboxImage = lightbox?.querySelector<HTMLImageElement>(
+    '[data-lightbox-image]',
+  );
+  const tiles = Array.from(
+    gallery?.querySelectorAll<HTMLButtonElement>('[data-gallery-index]') ?? [],
+  );
+  let currentIndex = 0;
+
+  const showPhoto = (index: number) => {
+    if (!lightboxImage || tiles.length === 0) return;
+
+    currentIndex = (index + tiles.length) % tiles.length;
+    const tile = tiles[currentIndex];
+    lightboxImage.src = tile.dataset.fullSrc ?? '';
+    lightboxImage.alt = `Customer build photo ${currentIndex + 1} of ${tiles.length}`;
+  };
+
+  tiles.forEach((tile, index) => {
+    tile.addEventListener('click', () => {
+      if (!lightbox) return;
+      showPhoto(index);
+      lightbox.showModal();
+    });
+  });
+
+  lightbox
+    ?.querySelector('[data-lightbox-close]')
+    ?.addEventListener('click', () => lightbox.close());
+  lightbox
+    ?.querySelector('[data-lightbox-previous]')
+    ?.addEventListener('click', () => showPhoto(currentIndex - 1));
+  lightbox
+    ?.querySelector('[data-lightbox-next]')
+    ?.addEventListener('click', () => showPhoto(currentIndex + 1));
+
+  lightbox?.addEventListener('click', (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+
+  lightbox?.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') showPhoto(currentIndex - 1);
+    if (event.key === 'ArrowRight') showPhoto(currentIndex + 1);
+  });
+</script>
 
 <style>
   .build-intro h1,
@@ -104,26 +180,78 @@ const photos = Object.entries(photoModules)
     gap: clamp(1rem, 2.5vw, 2rem);
   }
 
-  figure {
-    margin: 0;
+  .gallery-tile {
+    aspect-ratio: 1;
+    min-width: 0;
+    padding: 0;
     overflow: hidden;
-    border: 1px solid var(--line);
+    border: 0;
     background: var(--paper);
+    cursor: zoom-in;
     content-visibility: auto;
-    contain-intrinsic-size: 320px 280px;
+    contain-intrinsic-size: 320px 320px;
   }
 
-  figure img {
+  .gallery-tile img {
     width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
   }
 
-  figcaption {
-    padding: 0.75rem 0.9rem;
-    color: var(--muted);
-    font-size: 0.88rem;
-    font-weight: 700;
+  .gallery-tile:focus-visible {
+    outline-offset: 0.25rem;
+  }
+
+  .lightbox {
+    position: fixed;
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: clamp(1rem, 4vw, 3rem);
+    border: 0;
+    background: rgb(0 0 0 / 96%);
+    color: white;
+  }
+
+  .lightbox[open] {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .lightbox::backdrop {
+    background: rgb(0 0 0 / 92%);
+  }
+
+  .lightbox img {
+    width: 100%;
+    height: calc(100dvh - clamp(2rem, 8vw, 6rem));
+    object-fit: contain;
+  }
+
+  .lightbox button {
+    border: 0;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    z-index: 1;
+    top: 0.75rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .lightbox-nav {
+    padding: 1rem;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1;
   }
 
   .gallery-empty {
@@ -148,19 +276,28 @@ const photos = Object.entries(photoModules)
       grid-template-columns: 1fr;
       gap: 0.75rem;
     }
-
-    .gear-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
   }
 
   @media (max-width: 40rem) {
     .gear-grid {
-      grid-template-columns: 1fr;
+      gap: 0.5rem;
     }
 
     .gallery-section {
       padding-block: 2.5rem;
+    }
+
+    .lightbox {
+      padding: 2.5rem 0.25rem 0.5rem;
+    }
+
+    .lightbox img {
+      height: calc(100dvh - 3rem);
+    }
+
+    .lightbox-nav {
+      padding: 0.25rem;
+      font-size: 2.5rem;
     }
   }
 </style>
