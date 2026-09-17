@@ -21,6 +21,7 @@
   --space-7: 4.5rem;
   --space-8: 7rem;
   --shell: 90rem;
+  --heading-size: clamp(1.6rem, 2.75vw, 3.75rem);
   font-family:
     Inter,
     ui-sans-serif,
@@ -92,21 +93,13 @@ p {
 h1,
 h2,
 h3 {
+  font-size: var(--heading-size);
   line-height: 1.05;
   letter-spacing: -0.035em;
 }
 
 h1 {
   max-width: none;
-  font-size: clamp(2.1rem, 4.5vw, 4.6rem);
-}
-
-h2 {
-  font-size: clamp(1.75rem, 3.5vw, 3.25rem);
-}
-
-h3 {
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
 }
 
 .shell {
@@ -456,7 +449,6 @@ h3 {
 
 .empty-state h2 {
   margin-bottom: var(--space-2);
-  font-size: clamp(1.6rem, 3vw, 2.5rem);
 }
 
 .empty-state p {
@@ -480,6 +472,12 @@ h3 {
 
 .prose li + li {
   margin-top: 0.4rem;
+}
+
+@media (max-width: 60rem) {
+  :root {
+    --heading-size: clamp(1.75rem, 4.4vw, 3.4rem);
+  }
 }
 
 @media (max-width: 56rem) {
