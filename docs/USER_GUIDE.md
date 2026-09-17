@@ -2,6 +2,16 @@
 
 This guide covers the three public pages, photo workflow, local preview, validation, and publishing. Routine text and photo updates do not require changing page layout code.
 
+## Use the edit folder
+
+Open the top-level `edit/` folder for shortcuts to everything intended for routine updates. It contains editable page-text files, navigation and external-link settings, the logo, this guide, and the three original-photo drop folders. The shortcuts point to the real files and folders, so changes made through `edit/` immediately change the corresponding source content.
+
+- Put customer photos in `edit/customer-build-photos/`.
+- Put SplitShot screenshots in `edit/splitshot-screenshots/`.
+- Replace the About Me original in `edit/about-photo/`.
+- Replace `edit/logo.png` to change the site logo while keeping that filename.
+- Run `npm run photos:prepare` after adding or replacing photos in any photo folder.
+
 ## Start the site locally
 
 Open Terminal and run:

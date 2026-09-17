@@ -7,4 +7,13 @@ dist/
 .env.*
 !.env.example
 .sites-runtime/
-photos-originals/
+photos-originals/*
+!photos-originals/brand/
+!photos-originals/customer-builds/
+!photos-originals/splitshot/
+photos-originals/brand/*
+photos-originals/customer-builds/*
+photos-originals/splitshot/*
+!photos-originals/brand/.gitkeep
+!photos-originals/customer-builds/.gitkeep
+!photos-originals/splitshot/.gitkeep
