@@ -110,16 +110,23 @@ npm test
 
 ## Publish an edit to GitHub
 
-After previewing and testing:
+Double-click `edit/publish.command` in Finder. The script automatically:
+
+1. Confirms the required system tools, the `main` branch, and the GitHub remote are available.
+2. Downloads and verifies the website’s pinned Node.js runtime when needed, then installs all required website packages.
+3. Prepares optimized copies of new photos.
+4. Runs the complete validation suite and stops without publishing if a check fails.
+5. Commits every intended site change, synchronizes with GitHub, and pushes `main`.
+
+To run it from Terminal instead:
 
 ```sh
-git status
-git add -A
-git commit -m "content: describe the update"
-git push
+./edit/publish.command
 ```
 
-Pushing `main` starts the GitHub Pages workflow. Follow its result under the repository’s **Actions** tab: <https://github.com/jklock/KlockHoldingCo_GithubSites/actions>.
+For a validation-only run that does not commit or push, use `./edit/publish.command --check`.
+
+The script uses the existing GitHub login configured on this Mac. Pushing `main` starts the GitHub Pages workflow. Follow its result under the repository’s **Actions** tab: <https://github.com/jklock/KlockHoldingCo_GithubSites/actions>.
 
 ## Domain records
 

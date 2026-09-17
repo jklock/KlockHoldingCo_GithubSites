@@ -7,6 +7,7 @@ dist/
 .env.*
 !.env.example
 .sites-runtime/
+.site-tools/
 photos-originals/*
 !photos-originals/brand/
 !photos-originals/customer-builds/
