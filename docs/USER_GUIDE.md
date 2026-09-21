@@ -51,19 +51,19 @@ Edit `src/content/site/home.json`.
 - `heroEyebrow`, `heroHeading`, and `heroText` control the opening section.
 - `linksEyebrow` and `linksHeading` control the middle heading.
 - Each item under `destinations` controls the visible Pewcentric, Printables, and YouTube descriptions.
-- Fields beginning with `splitshot` control the SplitShot panel and GitHub button.
+- Fields beginning with `splitshot` control the SplitShot panel, the embedded video, and the GitHub button.
 - `metaDescription` controls the page description used by search engines and link previews.
 
 The main logo is `src/assets/brand/klock-holding-co-logo.png`.
 
-### Change the SplitShot screenshot row
+### Change the SplitShot screenshots
 
 1. Put original screenshots in `photos-originals/splitshot/`.
 2. Use descriptive filenames such as `review-timeline.png`; filenames become visible captions.
 3. Run `npm run photos:prepare`.
 4. Run `./scripts/prepare.sh` and refresh the local site.
 
-The prepared files are written to `src/assets/splitshot-gallery/`. The home page displays the first four files alphabetically in a compact row beneath the SplitShot description. Keep exactly four originals in this folder to control the complete row. The preparation step mirrors the originals folder, so removed originals also disappear from the site. The originals folder is intentionally ignored by Git so large source files are never pushed.
+The prepared files are written to `src/assets/splitshot-gallery/`. The home page shows the first four files alphabetically as a vertical column beside the SplitShot video; the tiles keep a fixed size that shrinks with the page width, and the column moves below the video on narrow screens. Clicking a screenshot opens it enlarged, where the side arrows or the left and right arrow keys move between screenshots and Escape closes the viewer. Keep exactly four originals in this folder to control the complete column. The preparation step mirrors the originals folder, so removed originals also disappear from the site. The originals folder is intentionally ignored by Git so large source files are never pushed.
 
 ## Edit the Customer Build Photos page
 

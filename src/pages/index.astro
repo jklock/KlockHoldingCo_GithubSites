@@ -112,25 +112,24 @@ const splitshotEmbedUrl = home.splitshotActionUrl
             <Icon name="external" size={16} />
           </a>
         </div>
-        <SplitShotGallery
-          label="SplitShot screenshots"
-          photos={splitshotPhotos}
-        />
-        <section
-          class="splitshot-action"
-          aria-labelledby="splitshot-action-title"
-        >
-          <h4 id="splitshot-action-title">
-            <InlineText text={home.splitshotActionHeading} />
-          </h4>
-          <iframe
-            src={splitshotEmbedUrl}
-            title="SplitShot in Action on YouTube"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </section>
+        <div class="splitshot-media">
+          <section
+            class="splitshot-action"
+            aria-label="SplitShot in Action video"
+          >
+            <iframe
+              src={splitshotEmbedUrl}
+              title="SplitShot in Action on YouTube"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </section>
+          <SplitShotGallery
+            label="SplitShot screenshots"
+            photos={splitshotPhotos}
+          />
+        </div>
       </aside>
     </div>
   </section>
@@ -269,16 +268,16 @@ const splitshotEmbedUrl = home.splitshotActionUrl
     color: #c8c4bd;
   }
 
-  .splitshot-action {
-    margin-top: 1.5rem;
+  .splitshot-media {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    align-items: start;
+    margin-top: clamp(1.5rem, 3vw, 2rem);
   }
 
-  .splitshot-action h4 {
-    margin-bottom: 0.75rem;
-    color: var(--accent-bright);
-    font-size: 1rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .splitshot-action {
+    margin-top: 0;
   }
 
   .splitshot-action iframe {
@@ -305,6 +304,12 @@ const splitshotEmbedUrl = home.splitshotActionUrl
 
     .destination-copy {
       grid-template-columns: minmax(0, 0.6fr) minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 56rem) {
+    .splitshot-media {
+      grid-template-columns: minmax(0, 1fr);
     }
   }
 

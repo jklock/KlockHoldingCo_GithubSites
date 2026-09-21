@@ -16,31 +16,117 @@ const { label, photos } = Astro.props;
 ---
 
 {photos.length > 0 && (
-  <section class="screenshot-gallery" aria-label={label}>
-    {photos.slice(0, 4).map((photo) => (
-      <figure>
-        <Image
-          src={photo.src}
-          alt={photo.alt}
-          widths={[320, 480]}
-          sizes="(max-width: 640px) 50vw, 25vw"
-          format="webp"
-          quality={72}
-          loading="lazy"
-          decoding="async"
-        />
-        <figcaption>{photo.alt}</figcaption>
-      </figure>
-    ))}
-  </section>
+  <>
+    <section class="screenshot-gallery" aria-label={label}>
+      {photos.slice(0, 4).map((photo) => (
+        <figure>
+          <button
+            class="screenshot-tile"
+            type="button"
+            data-gallery-tile
+            data-full-src={photo.src.src}
+            aria-label={`Enlarge ${photo.alt} screenshot`}
+          >
+            <Image
+              src={photo.src}
+              alt={photo.alt}
+              widths={[320, 480]}
+              sizes="(max-width: 46rem) 50vw, (max-width: 56rem) 25vw, 12vw"
+              format="webp"
+              quality={72}
+              loading="lazy"
+              decoding="async"
+            />
+          </button>
+          <figcaption>{photo.alt}</figcaption>
+        </figure>
+      ))}
+    </section>
+    <dialog
+      class="lightbox"
+      data-lightbox
+      aria-label="SplitShot screenshot viewer"
+    >
+      <button
+        class="lightbox-close"
+        type="button"
+        data-lightbox-close
+        aria-label="Close screenshot viewer"
+      >
+        ×
+      </button>
+      <button
+        class="lightbox-nav lightbox-previous"
+        type="button"
+        data-lightbox-previous
+        aria-label="Previous screenshot"
+      >
+        ‹
+      </button>
+      <img data-lightbox-image alt="" />
+      <button
+        class="lightbox-nav lightbox-next"
+        type="button"
+        data-lightbox-next
+        aria-label="Next screenshot"
+      >
+        ›
+      </button>
+    </dialog>
+  </>
 )}
 
+<script>
+  const lightbox = document.querySelector<HTMLDialogElement>('[data-lightbox]');
+  const lightboxImage = lightbox?.querySelector<HTMLImageElement>(
+    '[data-lightbox-image]',
+  );
+  const tiles = Array.from(
+    document.querySelectorAll<HTMLButtonElement>('[data-gallery-tile]'),
+  );
+  let currentIndex = 0;
+  const showPhoto = (index: number) => {
+    if (!lightboxImage || !tiles.length) return;
+    currentIndex = (index + tiles.length) % tiles.length;
+    lightboxImage.src = tiles[currentIndex].dataset.fullSrc ?? '';
+    lightboxImage.alt = `SplitShot screenshot ${currentIndex + 1} of ${tiles.length}`;
+  };
+  tiles.forEach((tile, index) =>
+    tile.addEventListener('click', () => {
+      showPhoto(index);
+      lightbox?.showModal();
+    }),
+  );
+  lightbox
+    ?.querySelector('[data-lightbox-close]')
+    ?.addEventListener('click', () => lightbox.close());
+  lightbox
+    ?.querySelector('[data-lightbox-previous]')
+    ?.addEventListener('click', () => showPhoto(currentIndex - 1));
+  lightbox
+    ?.querySelector('[data-lightbox-next]')
+    ?.addEventListener('click', () => showPhoto(currentIndex + 1));
+  lightbox?.addEventListener('click', (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+  lightbox?.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      lightbox.close();
+      return;
+    }
+    if (event.key === 'ArrowLeft') showPhoto(currentIndex - 1);
+    if (event.key === 'ArrowRight') showPhoto(currentIndex + 1);
+  });
+</script>
+
 <style>
+  /* A 1x4 column of fixed-size tiles whose size follows the page width. */
   .screenshot-gallery {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(0.5rem, 1.5vw, 1rem);
-    margin-top: clamp(1.5rem, 3vw, 2rem);
+    grid-template-columns: 1fr;
+    width: clamp(8rem, 12vw, 13rem);
+    gap: clamp(0.4rem, 1vw, 0.75rem);
   }
 
   figure {
@@ -51,13 +137,32 @@ const { label, photos } = Astro.props;
     background: #0e100d;
   }
 
-  img {
+  .screenshot-tile {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .screenshot-tile img {
     display: block;
     width: 100%;
     height: auto;
     aspect-ratio: 14 / 9;
     object-fit: cover;
     object-position: top left;
+  }
+
+  .screenshot-tile:hover img,
+  .screenshot-tile:focus-visible img {
+    opacity: 0.82;
+  }
+
+  .screenshot-tile:focus-visible {
+    outline: 2px solid var(--accent-bright);
+    outline-offset: -2px;
   }
 
   figcaption {
@@ -67,9 +172,84 @@ const { label, photos } = Astro.props;
     line-height: 1.25;
   }
 
+  .lightbox {
+    position: fixed;
+    width: 100vw;
+    max-width: none;
+    height: 100dvh;
+    max-height: none;
+    margin: 0;
+    padding: clamp(1rem, 4vw, 3rem);
+    border: 0;
+    background: rgb(0 0 0 / 96%);
+    color: white;
+  }
+
+  .lightbox[open] {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .lightbox::backdrop {
+    background: rgb(0 0 0 / 92%);
+  }
+
+  .lightbox img {
+    width: 100%;
+    height: calc(100dvh - clamp(2rem, 8vw, 6rem));
+    object-fit: contain;
+  }
+
+  .lightbox button {
+    border: 0;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    z-index: 1;
+    top: 0.75rem;
+    right: 1rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .lightbox-nav {
+    padding: 1rem;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1;
+  }
+
+  /* Once the column no longer fits beside the video, return to the compact
+     grid: four across, then two across on small screens. */
+  @media (max-width: 56rem) {
+    .screenshot-gallery {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      width: 100%;
+      gap: clamp(0.5rem, 1.5vw, 1rem);
+    }
+  }
+
   @media (max-width: 46rem) {
     .screenshot-gallery {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .lightbox {
+      padding: 2.5rem 0.25rem 0.5rem;
+    }
+
+    .lightbox img {
+      height: calc(100dvh - 3rem);
+    }
+
+    .lightbox-nav {
+      padding: 0.25rem;
+      font-size: 2.5rem;
     }
   }
 </style>
