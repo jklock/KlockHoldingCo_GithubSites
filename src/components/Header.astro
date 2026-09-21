@@ -8,9 +8,16 @@ import navigation from '../content/site/navigation.json';
     Skip to content
   </a>
   <nav id="primary-nav" aria-label="Primary navigation">
-    <a class="home-link" href="/">
-      {navigation.home}
+    <a
+      class="home-link"
+      href="/"
+      aria-label={navigation.home}
+      title={navigation.home}
+    >
+      <span aria-hidden="true">⌂</span>
+      <span class="sr-only">{navigation.home}</span>
     </a>
+    <a href="/products/">{navigation.products}</a>
     <a href="/gear/">
       <span class="wide-label">{navigation.customerBuilds}</span>
       <span class="compact-label">{navigation.customerBuildsShort}</span>

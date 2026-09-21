@@ -251,10 +251,7 @@ h1 {
 
 #primary-nav {
   display: grid;
-  grid-template-columns: 7rem minmax(0, 1.35fr) minmax(0, 1fr) minmax(
-      6.5rem,
-      0.75fr
-    );
+  grid-template-columns: 7rem repeat(3, minmax(0, 1fr)) minmax(6.5rem, 0.75fr);
   width: 100%;
 }
 
@@ -287,6 +284,11 @@ h1 {
 #primary-nav > a:last-child:hover {
   background: var(--accent-bright);
   color: var(--ink);
+}
+
+#primary-nav .home-link > span[aria-hidden='true'] {
+  font-size: clamp(1.75rem, 3vw, 2.6rem);
+  line-height: 1;
 }
 
 .compact-label {
@@ -505,7 +507,7 @@ h1 {
   }
 
   #primary-nav {
-    grid-template-columns: 4.75rem repeat(3, minmax(0, 1fr));
+    grid-template-columns: 4.75rem repeat(4, minmax(0, 1fr));
   }
 
   .wide-label {

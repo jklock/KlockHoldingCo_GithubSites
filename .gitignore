@@ -1,20 +1,52 @@
+# ---------------------------------------------------------------------------
+# Klock Holding Co. website — local-only files.
+#
+# edit/publish.command publishes with `git add -A`, so anything NOT listed in
+# this file ends up in the public repository. Only add an exception below when
+# the file is genuinely needed to build or serve the website.
+# ---------------------------------------------------------------------------
+
+# Raw photo originals: camera files, phone screenshots, and printable sources.
+# They stay on this computer. Only the generated WebP output under src/assets/
+# is published — recreate these folders locally with `npm run photos:prepare`.
+photos-originals/
+
+# Build output and local tool runtimes
 node_modules/
 dist/
 .astro/
-.DS_Store
-*.log
+.site-tools/
+.sites-runtime/
+
+# Internal notes and AI assistant configuration — not part of the live site.
+# Remove a line here if you want that file shared through the repository.
+HANDOFF.json
+.github/copilot-instructions.md
+.github/agents/
+.github/instructions/
+
+# Third-party logo downloads left over from a discarded footer idea. They are
+# unreferenced; see the caveats in HANDOFF.json before relying on them.
+src/assets/brand/pewcentric-logo.png
+src/assets/brand/printables-logo.png
+
+# Secrets and environment files
 .env
 .env.*
 !.env.example
-.sites-runtime/
-.site-tools/
-photos-originals/*
-!photos-originals/brand/
-!photos-originals/customer-builds/
-!photos-originals/splitshot/
-photos-originals/brand/*
-photos-originals/customer-builds/*
-photos-originals/splitshot/*
-!photos-originals/brand/.gitkeep
-!photos-originals/customer-builds/.gitkeep
-!photos-originals/splitshot/.gitkeep
+
+# Log files
+*.log
+npm-debug.log*
+
+# macOS, Windows, and editor clutter
+.DS_Store
+._*
+.AppleDouble
+.Spotlight-V100
+.Trashes
+.fseventsd
+Thumbs.db
+desktop.ini
+*.swp
+*~

@@ -1,7 +1,9 @@
 ---
 import { Image } from 'astro:assets';
 import aboutPhoto from '../assets/brand/about-me.webp';
+import winniePhoto from '../assets/brand/winnie.webp';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import InlineText from '../components/InlineText.astro';
 import about from '../content/site/about.json';
 ---
 
@@ -15,9 +17,15 @@ import about from '../content/site/about.json';
   <header class="about-hero section-dark">
     <div class="shell about-hero-grid">
       <div class="about-intro">
-        <p class="eyebrow">{about.heroEyebrow}</p>
-        <h1>{about.heroHeading}</h1>
-        <p class="lede">{about.heroText}</p>
+        <p class="eyebrow">
+          <InlineText text={about.heroEyebrow} />
+        </p>
+        <h1>
+          <InlineText text={about.heroHeading} />
+        </h1>
+        <p class="lede">
+          <InlineText text={about.heroText} />
+        </p>
       </div>
       <Image
         class="about-photo"
@@ -35,16 +43,37 @@ import about from '../content/site/about.json';
   <section class="section">
     <article class="shell about-story">
       <div class="story-heading">
-        <p class="eyebrow">{about.storyEyebrow}</p>
-        <h2>{about.storyHeading}</h2>
+        <p class="eyebrow">
+          <InlineText text={about.storyEyebrow} />
+        </p>
+        <h2>
+          <InlineText text={about.storyHeading} />
+        </h2>
+        <div class="winnie-frame">
+          <Image
+            class="winnie-photo"
+            src={winniePhoto}
+            alt="Winnie, the Klock Holding Co. dog"
+            widths={[480, 720, 960]}
+            sizes="(max-width: 992px) 100vw, 35vw"
+            format="webp"
+            loading="lazy"
+          />
+        </div>
       </div>
       <div class="story-copy">
         {about.storyParagraphs.map((paragraph) => (
-          <p>{paragraph}</p>
+          <p>
+            <InlineText text={paragraph} />
+          </p>
         ))}
-        <h2>{about.openHeading}</h2>
+        <h2>
+          <InlineText text={about.openHeading} />
+        </h2>
         {about.openParagraphs.map((paragraph) => (
-          <p>{paragraph}</p>
+          <p>
+            <InlineText text={paragraph} />
+          </p>
         ))}
       </div>
     </article>
@@ -89,17 +118,34 @@ import about from '../content/site/about.json';
     display: grid;
     grid-template-columns: minmax(16rem, 0.7fr) minmax(0, 1.3fr);
     gap: clamp(2.5rem, 7vw, 7rem);
-    align-items: start;
+    align-items: stretch;
   }
 
   .story-heading {
-    position: sticky;
-    top: 1.5rem;
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
   }
 
   .story-heading h2,
   .story-copy h2 {
     max-width: none;
+  }
+
+  .winnie-frame {
+    display: flex;
+    min-height: 0;
+    flex: 1;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+
+  .winnie-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .story-copy {
@@ -121,8 +167,17 @@ import about from '../content/site/about.json';
       grid-template-columns: 1fr;
     }
 
-    .story-heading {
-      position: static;
+    .about-story {
+      align-items: start;
+    }
+
+    .winnie-frame {
+      display: block;
+      flex: none;
+    }
+
+    .winnie-photo {
+      height: auto;
     }
   }
 

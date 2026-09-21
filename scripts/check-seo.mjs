@@ -2,7 +2,16 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const outputDirectory = new URL('../dist/', import.meta.url).pathname;
-const indexedPages = ['index.html', 'about/index.html', 'gear/index.html'];
+const indexedPages = [
+  'index.html',
+  'about/index.html',
+  'gear/index.html',
+  'products/index.html',
+  'products/rover-idpa-belt/index.html',
+  'products/rover-uspsa-belt/index.html',
+  'products/astro-magazine-pouch/index.html',
+  'products/gromit-magnet-attachment/index.html',
+];
 const failures = [];
 
 const requirePattern = (html, pattern, message) => {

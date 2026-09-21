@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import logo from '../assets/brand/klock-holding-co-logo.png';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import InlineText from '../components/InlineText.astro';
 import SplitShotGallery from '../components/SplitShotGallery.astro';
 import home from '../content/site/home.json';
 import { site } from '../site-config';
@@ -22,6 +23,9 @@ const splitshotPhotos = Object.entries(splitshotModules)
       .replace(/[-_]+/g, ' ')
       .replace(/\b\w/g, (character) => character.toUpperCase()),
   }));
+const splitshotEmbedUrl = home.splitshotActionUrl
+  .replace('watch?v=', 'embed/')
+  .replace(/&.*$/, '');
 ---
 
 <BaseLayout
@@ -42,9 +46,15 @@ const splitshotPhotos = Object.entries(splitshotModules)
         fetchpriority="high"
       />
       <div class="hero-copy">
-        <p class="eyebrow">{home.heroEyebrow}</p>
-        <h1>{home.heroHeading}</h1>
-        <p class="lede">{home.heroText}</p>
+        <p class="eyebrow">
+          <InlineText text={home.heroEyebrow} />
+        </p>
+        <h1>
+          <InlineText text={home.heroHeading} />
+        </h1>
+        <p class="lede">
+          <InlineText text={home.heroText} />
+        </p>
       </div>
     </div>
   </section>
@@ -52,8 +62,12 @@ const splitshotPhotos = Object.entries(splitshotModules)
   <section class="hub-links" aria-labelledby="destinations-title">
     <div class="shell">
       <div class="hub-heading">
-        <p class="eyebrow">{home.linksEyebrow}</p>
-        <h2 id="destinations-title">{home.linksHeading}</h2>
+        <p class="eyebrow">
+          <InlineText text={home.linksEyebrow} />
+        </p>
+        <h2 id="destinations-title">
+          <InlineText text={home.linksHeading} />
+        </h2>
       </div>
       <div class="destination-list">
         {home.destinations.map((item, index) => (
@@ -63,9 +77,15 @@ const splitshotPhotos = Object.entries(splitshotModules)
               <Icon name={destinationIcons[index]} size={24} />
             </span>
             <span class="destination-copy">
-              <small>{item.label}</small>
-              <strong>{item.name}</strong>
-              <span>{item.description}</span>
+              <small>
+                <InlineText text={item.label} />
+              </small>
+              <strong>
+                <InlineText text={item.name} />
+              </strong>
+              <span>
+                <InlineText text={item.description} />
+              </span>
             </span>
           </div>
         ))}
@@ -73,22 +93,44 @@ const splitshotPhotos = Object.entries(splitshotModules)
 
       <aside id="splitshot" class="splitshot-note section-dark">
         <div class="splitshot-copy">
-          <p class="eyebrow">{home.splitshotEyebrow}</p>
-          <h3>{home.splitshotHeading}</h3>
-          <p>{home.splitshotText}</p>
+          <p class="eyebrow">
+            <InlineText text={home.splitshotEyebrow} />
+          </p>
+          <h3>
+            <InlineText text={home.splitshotHeading} />
+          </h3>
+          <p>
+            <InlineText text={home.splitshotText} />
+          </p>
           <a
             class="button"
             href={site.social.splitshot}
             target="_blank"
             rel="noreferrer"
           >
-            {home.splitshotButton} <Icon name="external" size={16} />
+            <InlineText text={home.splitshotButton} />{' '}
+            <Icon name="external" size={16} />
           </a>
         </div>
         <SplitShotGallery
           label="SplitShot screenshots"
           photos={splitshotPhotos}
         />
+        <section
+          class="splitshot-action"
+          aria-labelledby="splitshot-action-title"
+        >
+          <h4 id="splitshot-action-title">
+            <InlineText text={home.splitshotActionHeading} />
+          </h4>
+          <iframe
+            src={splitshotEmbedUrl}
+            title="SplitShot in Action on YouTube"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </section>
       </aside>
     </div>
   </section>
@@ -225,6 +267,26 @@ const splitshotPhotos = Object.entries(splitshotModules)
   .splitshot-copy > p:not(.eyebrow) {
     margin-bottom: 1.5rem;
     color: #c8c4bd;
+  }
+
+  .splitshot-action {
+    margin-top: 1.5rem;
+  }
+
+  .splitshot-action h4 {
+    margin-bottom: 0.75rem;
+    color: var(--accent-bright);
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .splitshot-action iframe {
+    display: block;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    border: 0;
   }
 
   @media (max-width: 60rem) {

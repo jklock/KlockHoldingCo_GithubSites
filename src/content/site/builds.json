@@ -7,5 +7,12 @@
   "communityText": "Tag Klock Holding Co. on Instagram or Facebook with photos of your finished setup. I’ll add customer submissions to this gallery and may share them through my own social channels.",
   "emptyEyebrow": "More soon",
   "emptyHeading": "The customer gallery is being stocked.",
-  "emptyText": "Completed builds and customer-submitted setups will appear here."
+  "emptyText": "Completed builds and customer-submitted setups will appear here.",
+  "categories": [
+    { "slug": "rover-idpa-belt", "name": "ROVER IDPA Belt" },
+    { "slug": "rover-uspsa-belt", "name": "ROVER USPSA Belt" },
+    { "slug": "astro-magazine-pouch", "name": "ASTRO Magazine Pouch" },
+    { "slug": "gromit-magnet-attachment", "name": "GROMIT Magnet Attachment" },
+    { "slug": "one-offs-custom-requests", "name": "One-Offs & Custom Requests" }
+  ]
 }

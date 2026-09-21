@@ -2,93 +2,140 @@
 import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import InlineText from '../components/InlineText.astro';
 import builds from '../content/site/builds.json';
 import { site } from '../site-config';
 
-const photoModules = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/gear-gallery/*.{jpg,jpeg,png,webp,avif}',
+const modules = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/customer-builds/**/*.{jpg,jpeg,png,webp,avif}',
   { eager: true },
 );
-
-const photos = Object.entries(photoModules)
-  .sort(([left], [right]) => left.localeCompare(right))
-  .map(([, photo]) => ({ src: photo.default }));
-const galleryImageAlt = (index: number) =>
-  `Klock Holding Co. customer competition gear build photo ${index + 1}`;
+const photosFor = (slug: string) =>
+  Object.entries(modules)
+    .filter(([path]) => path.includes(`/${slug}/`))
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([, photo]) => photo.default);
+const categories = builds.categories.map((category) => ({
+  ...category,
+  photos: photosFor(category.slug),
+}));
 const galleryStructuredData = {
   '@type': 'ImageGallery',
   name: 'Klock Holding Co. customer competition gear builds',
   description: builds.metaDescription,
   url: new URL('/gear/', site.url),
-  associatedMedia: photos.map((photo, index) => ({
-    '@type': 'ImageObject',
-    contentUrl: new URL(photo.src.src, site.url),
-    caption: galleryImageAlt(index),
-  })),
+  associatedMedia: categories.flatMap((category) =>
+    category.photos.map((photo, index) => ({
+      '@type': 'ImageObject',
+      contentUrl: new URL(photo.src, site.url),
+      caption: `${category.name} customer build ${index + 1}`,
+    })),
+  ),
 };
 ---
 
 <BaseLayout
   title="Customer Competition Gear Build Photos"
   description={builds.metaDescription}
-  image={photos[0]?.src.src}
-  imageAlt={photos.length > 0 ? galleryImageAlt(0) : undefined}
+  image={categories.flatMap((category) => category.photos)[0]?.src}
   pageType="CollectionPage"
   structuredData={galleryStructuredData}
 >
   <header class="page-intro build-intro">
     <div class="shell">
-      <p class="eyebrow">{builds.eyebrow}</p>
-      <h1>{builds.heading}</h1>
-      <p class="lede">{builds.intro}</p>
+      <p class="eyebrow">
+        <InlineText text={builds.eyebrow} />
+      </p>
+      <h1>
+        <InlineText text={builds.heading} />
+      </h1>
+      <p class="lede">
+        <InlineText text={builds.intro} />
+      </p>
     </div>
   </header>
-
   <section class="community-note">
     <div class="shell">
-      <h2>{builds.communityHeading}</h2>
-      <p>{builds.communityText}</p>
+      <h2>
+        <InlineText text={builds.communityHeading} />
+      </h2>
+      <p>
+        <InlineText text={builds.communityText} />
+      </p>
     </div>
   </section>
-
   <section
     class="section gallery-section"
-    aria-label="Klock Holding Co. customer build gallery"
+    aria-label="Klock Holding Co. customer build galleries"
   >
-    <div class="shell">
-      {photos.length > 0 ? (
-        <div class="gear-grid" data-gallery>
-          {photos.map((photo, index) => (
+    <div class="shell category-list">
+      {categories.map((category) => (
+        <section id={category.slug} class="build-category">
+          <header class="category-heading">
             <button
-              class="gallery-tile"
+              class="category-disclosure"
               type="button"
-              data-gallery-index={index}
-              data-full-src={photo.src.src}
-              aria-label={`Open customer build photo ${index + 1}`}
+              data-category-disclosure
+              aria-controls={`${category.slug}-content`}
+              aria-expanded="true"
             >
-              <Image
-                src={photo.src}
-                alt={galleryImageAlt(index)}
-                widths={[320, 640]}
-                sizes="33vw"
-                format="webp"
-                quality={72}
-                loading="lazy"
-                decoding="async"
-              />
+              <span aria-hidden="true">−</span>
+              <span class="sr-only">Collapse {category.name}</span>
             </button>
-          ))}
-        </div>
-      ) : (
-        <div class="gallery-empty">
-          <p class="eyebrow">{builds.emptyEyebrow}</p>
-          <h2>{builds.emptyHeading}</h2>
-          <p>{builds.emptyText}</p>
-        </div>
-      )}
+            <h2>
+              <InlineText text={category.name} />
+            </h2>
+            <span class="category-count">
+              {category.photos.length} photo
+              {category.photos.length === 1 ? '' : 's'}
+            </span>
+          </header>
+          {category.photos.length > 0 && (
+            <div id={`${category.slug}-content`} data-category-content>
+              <div id={`${category.slug}-gallery`} class="gear-grid">
+                {category.photos.map((photo, index) => (
+                  <button
+                    class:list={[
+                      'gallery-tile',
+                      { 'gallery-tile-extra': index >= 4 },
+                    ]}
+                    type="button"
+                    data-gallery-tile
+                    data-full-src={photo.src}
+                    aria-label={`Open ${category.name} customer build photo ${index + 1}`}
+                    hidden={index >= 4}
+                  >
+                    <Image
+                      src={photo}
+                      alt={`${category.name} customer build ${index + 1}`}
+                      widths={[320, 640]}
+                      sizes="(max-width: 62rem) 50vw, 25vw"
+                      format="webp"
+                      quality={72}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </button>
+                ))}
+              </div>
+              {category.photos.length > 4 && (
+                <button
+                  class="gallery-toggle"
+                  type="button"
+                  data-gallery-toggle
+                  aria-controls={`${category.slug}-gallery`}
+                  aria-expanded="false"
+                  aria-label={`Show all ${category.photos.length} ${category.name} photos`}
+                >
+                  <span aria-hidden="true">+</span>
+                </button>
+              )}
+            </div>
+          )}
+        </section>
+      ))}
     </div>
   </section>
-
   <dialog
     class="lightbox"
     data-lightbox
@@ -123,33 +170,26 @@ const galleryStructuredData = {
 </BaseLayout>
 
 <script>
-  const gallery = document.querySelector<HTMLElement>('[data-gallery]');
   const lightbox = document.querySelector<HTMLDialogElement>('[data-lightbox]');
   const lightboxImage = lightbox?.querySelector<HTMLImageElement>(
     '[data-lightbox-image]',
   );
   const tiles = Array.from(
-    gallery?.querySelectorAll<HTMLButtonElement>('[data-gallery-index]') ?? [],
+    document.querySelectorAll<HTMLButtonElement>('[data-gallery-tile]'),
   );
   let currentIndex = 0;
-
   const showPhoto = (index: number) => {
-    if (!lightboxImage || tiles.length === 0) return;
-
+    if (!lightboxImage || !tiles.length) return;
     currentIndex = (index + tiles.length) % tiles.length;
-    const tile = tiles[currentIndex];
-    lightboxImage.src = tile.dataset.fullSrc ?? '';
+    lightboxImage.src = tiles[currentIndex].dataset.fullSrc ?? '';
     lightboxImage.alt = `Customer build photo ${currentIndex + 1} of ${tiles.length}`;
   };
-
-  tiles.forEach((tile, index) => {
+  tiles.forEach((tile, index) =>
     tile.addEventListener('click', () => {
-      if (!lightbox) return;
       showPhoto(index);
-      lightbox.showModal();
-    });
-  });
-
+      lightbox?.showModal();
+    }),
+  );
   lightbox
     ?.querySelector('[data-lightbox-close]')
     ?.addEventListener('click', () => lightbox.close());
@@ -159,15 +199,53 @@ const galleryStructuredData = {
   lightbox
     ?.querySelector('[data-lightbox-next]')
     ?.addEventListener('click', () => showPhoto(currentIndex + 1));
-
   lightbox?.addEventListener('click', (event) => {
     if (event.target === lightbox) lightbox.close();
   });
-
   lightbox?.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowLeft') showPhoto(currentIndex - 1);
     if (event.key === 'ArrowRight') showPhoto(currentIndex + 1);
   });
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-gallery-toggle]')
+    .forEach((toggle) => {
+      const gallery = document.getElementById(
+        toggle.getAttribute('aria-controls') ?? '',
+      );
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        gallery
+          ?.querySelectorAll<HTMLButtonElement>('.gallery-tile-extra')
+          .forEach((tile) => {
+            tile.hidden = expanded;
+          });
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        toggle.querySelector('[aria-hidden="true"]')!.textContent = expanded
+          ? '+'
+          : '−';
+        toggle.setAttribute(
+          'aria-label',
+          expanded ? 'Show all photos' : 'Show fewer photos',
+        );
+      });
+    });
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-category-disclosure]')
+    .forEach((toggle) => {
+      const content = document.getElementById(
+        toggle.getAttribute('aria-controls') ?? '',
+      );
+      const label = toggle.querySelector('.sr-only');
+      const icon = toggle.querySelector('[aria-hidden="true"]');
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        content?.toggleAttribute('hidden', expanded);
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        if (icon) icon.textContent = expanded ? '>' : '−';
+        if (label)
+          label.textContent = `${expanded ? 'Expand' : 'Collapse'} category`;
+      });
+    });
 </script>
 
 <style>
@@ -175,54 +253,92 @@ const galleryStructuredData = {
   .build-intro .lede {
     max-width: none;
   }
-
   .community-note {
     padding-block: clamp(1.5rem, 4vw, 2.5rem);
     border-block: 1px solid var(--line);
     background: var(--canvas);
   }
-
   .community-note .shell {
     display: grid;
     grid-template-columns: minmax(14rem, 0.45fr) minmax(0, 1.55fr);
     gap: 2rem;
     align-items: start;
   }
-
   .community-note h2,
   .community-note p {
     max-width: none;
     margin-bottom: 0;
   }
-
+  .category-list {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .build-category {
+    scroll-margin-top: 4rem;
+    border: 1px solid var(--line);
+    background: var(--paper);
+  }
+  .category-heading {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.1rem 1.25rem;
+  }
+  .category-heading h2 {
+    margin: 0;
+    font-size: clamp(1rem, 2vw, 1.35rem);
+  }
+  .category-disclosure,
+  .gallery-toggle {
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    place-items: center;
+    padding: 0;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .category-disclosure:hover,
+  .gallery-toggle:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .category-count {
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
   .gear-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(1rem, 2.5vw, 2rem);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-4);
+    padding: 0 0 var(--space-4);
   }
-
   .gallery-tile {
     aspect-ratio: 1;
     min-width: 0;
     padding: 0;
     overflow: hidden;
     border: 0;
-    background: var(--paper);
+    background: var(--canvas);
     cursor: zoom-in;
     content-visibility: auto;
     contain-intrinsic-size: 320px 320px;
   }
-
   .gallery-tile img {
     width: 100%;
     height: 100%;
     object-fit: contain;
   }
-
-  .gallery-tile:focus-visible {
-    outline-offset: 0.25rem;
+  .gallery-toggle {
+    margin: 0 1.25rem 1.25rem;
   }
-
   .lightbox {
     position: fixed;
     width: 100vw;
@@ -235,30 +351,25 @@ const galleryStructuredData = {
     background: rgb(0 0 0 / 96%);
     color: white;
   }
-
   .lightbox[open] {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
   }
-
   .lightbox::backdrop {
     background: rgb(0 0 0 / 92%);
   }
-
   .lightbox img {
     width: 100%;
     height: calc(100dvh - clamp(2rem, 8vw, 6rem));
     object-fit: contain;
   }
-
   .lightbox button {
     border: 0;
     color: white;
     background: transparent;
     cursor: pointer;
   }
-
   .lightbox-close {
     position: absolute;
     z-index: 1;
@@ -268,54 +379,39 @@ const galleryStructuredData = {
     font-size: 2.5rem;
     line-height: 1;
   }
-
   .lightbox-nav {
     padding: 1rem;
     font-size: clamp(2.5rem, 6vw, 5rem);
     line-height: 1;
   }
-
-  .gallery-empty {
-    width: 100%;
-    padding: clamp(1.75rem, 5vw, 4rem);
-    border: 1px solid var(--line);
-    background: var(--paper);
+  @media (max-width: 62rem) {
+    .gear-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
-
-  .gallery-empty h2 {
-    max-width: none;
-    margin-bottom: 1rem;
-  }
-
-  .gallery-empty p:last-child {
-    margin-bottom: 0;
-    color: var(--muted);
-  }
-
   @media (max-width: 56rem) {
     .community-note .shell {
       grid-template-columns: 1fr;
       gap: 0.75rem;
     }
   }
-
   @media (max-width: 40rem) {
     .gear-grid {
-      gap: 0.5rem;
+      gap: var(--space-3);
     }
-
-    .gallery-section {
-      padding-block: 2.5rem;
+    .category-heading {
+      margin-inline: 0.75rem;
+      padding-inline: 0;
     }
-
+    .gallery-toggle {
+      margin-inline: 0.75rem;
+    }
     .lightbox {
       padding: 2.5rem 0.25rem 0.5rem;
     }
-
     .lightbox img {
       height: calc(100dvh - 3rem);
     }
-
     .lightbox-nav {
       padding: 0.25rem;
       font-size: 2.5rem;

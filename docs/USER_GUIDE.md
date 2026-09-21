@@ -1,16 +1,21 @@
 # Klock Holding Co. website editing guide
 
-This guide covers the three public pages, photo workflow, local preview, validation, and publishing. Routine text and photo updates do not require changing page layout code.
+This guide covers the public pages, product catalog, photo workflow, local preview, validation, and publishing. Routine text and photo updates do not require changing page layout code.
 
 ## Use the edit folder
 
 Open the top-level `edit/` folder for shortcuts to everything intended for routine updates. It contains editable page-text files, navigation and external-link settings, the logo, this guide, and the three original-photo drop folders. The shortcuts point to the real files and folders, so changes made through `edit/` immediately change the corresponding source content.
 
+### Bold text
+
+In any editable visible-text value, surround words with two asterisks on each side. For example, write `Built for **competition shooters**.` to show “competition shooters” in bold. Keep the quotation marks, commas, braces, and field names unchanged.
+
 - Put customer photos in `edit/customer-build-photos/`.
+- Put product photos in `edit/product-photos/`.
 - Put SplitShot screenshots in `edit/splitshot-screenshots/`.
 - Replace the About Me original in `edit/about-photo/`.
 - Replace `edit/logo.png` to change the site logo while keeping that filename.
-- Run `npm run photos:prepare` after adding or replacing photos in any photo folder.
+- Run `./scripts/prepare.sh` after adding, moving, replacing, or removing photos in any photo folder.
 
 ## Start the site locally
 
@@ -28,10 +33,11 @@ Open the local address printed by Astro. Leave that Terminal window running whil
 
 Edit `src/content/site/navigation.json`.
 
-- `home` controls the Home button.
+- `home` controls the accessible label for the house-icon Home button.
 - `customerBuilds` is the desktop Customer Builds label.
 - `customerBuildsShort` is the shorter mobile label.
 - `about` controls About Me.
+- `products` controls Products.
 - `shop` controls Shop.
 
 Edit only the text between quotation marks. Keep the quotation marks, commas, braces, and field names intact.
@@ -55,9 +61,9 @@ The main logo is `src/assets/brand/klock-holding-co-logo.png`.
 1. Put original screenshots in `photos-originals/splitshot/`.
 2. Use descriptive filenames such as `review-timeline.png`; filenames become visible captions.
 3. Run `npm run photos:prepare`.
-4. Refresh the local site.
+4. Run `./scripts/prepare.sh` and refresh the local site.
 
-The prepared files are written to `src/assets/splitshot-gallery/`. The home page displays the first four files alphabetically in a compact row beneath the SplitShot description. Keep exactly four prepared files in this directory to control the complete row. Remove a prepared file from that directory to remove it from the page. The originals folder is intentionally ignored by Git so large source files are never pushed.
+The prepared files are written to `src/assets/splitshot-gallery/`. The home page displays the first four files alphabetically in a compact row beneath the SplitShot description. Keep exactly four originals in this folder to control the complete row. The preparation step mirrors the originals folder, so removed originals also disappear from the site. The originals folder is intentionally ignored by Git so large source files are never pushed.
 
 ## Edit the Customer Build Photos page
 
@@ -70,20 +76,46 @@ Edit `src/content/site/builds.json`.
 
 ### Add customer build photos
 
-1. Copy JPEG, PNG, WebP, or AVIF originals into `photos-originals/customer-builds/`.
+1. Copy JPEG, PNG, WebP, or AVIF originals into the matching category inside `edit/customer-build-photos/`:
+
+   - `rover-idpa-belt/`
+   - `rover-uspsa-belt/`
+   - `astro-magazine-pouch/`
+   - `gromit-magnet-attachment/`
+   - `one-offs-custom-requests/`
+
 2. Give each file a descriptive local name, such as `orange-idpa-belt-jane-doe.jpg`. Filenames are not shown publicly.
 3. Run:
 
    ```sh
-   npm run photos:prepare
+   ./scripts/prepare.sh
    ```
 
 4. Preview the gallery locally.
-5. Commit the generated files under `src/assets/gear-gallery/`; do not commit `photos-originals/`.
+5. Commit the generated files under `src/assets/customer-builds/`; do not commit `photos-originals/`.
 
-The preparation command corrects camera rotation, limits the longest edge to 1600 pixels, converts the image to WebP, and lowers quality further only when needed to keep a prepared file near or below 900 KB. During the site build, Astro creates 320-pixel and 640-pixel responsive thumbnails. Browsers lazy-load those thumbnails, and off-screen gallery tiles use `content-visibility` so a large gallery does not render all at once. Clicking a tile loads the full prepared image in the gallery viewer.
+The preparation command corrects camera rotation, limits the longest edge to 1600 pixels, converts the image to WebP, and lowers quality further only when needed to keep a prepared file near or below 900 KB. Each category is mirrored separately: only files in that category's `edit/` folder appear in its gallery, and stale generated WebPs for that same category are removed. During the site build, Astro creates 320-pixel and 640-pixel responsive thumbnails. Browsers lazy-load those thumbnails, and off-screen gallery tiles use `content-visibility` so a large gallery does not render all at once. Clicking a tile loads the full prepared image in the gallery viewer.
 
-To remove a customer photo, delete its matching `.webp` file from `src/assets/gear-gallery/`.
+The Customer Builds page opens with four photos per populated category. Use `+` to show all category photos, `−` to return to four, and `>` to hide that category's photos. Existing photos begin in `one-offs-custom-requests/`; move originals into another category folder when you are ready to sort them.
+
+## Edit Products
+
+Edit `edit/product-catalog.json` for all product names, summaries, descriptions, photo alt text, and optional links. Keep the JSON punctuation and field names intact.
+
+- `youtubeUrl`: paste a normal YouTube watch URL. The page adds both an embedded video and a YouTube button.
+- `printablesUrl`: paste the direct Printables model URL. The page adds a Printables button.
+- Leave either field empty (`""`) to hide it from the page.
+- `benefits`, `specifications`, `configuration`, and `purchaseNote` control the buying information below the photos. Keep the brackets, quotation marks, and commas intact; edit only the text.
+
+### Add product photos
+
+Each product has a matching folder in `edit/product-photos/`. Add JPEG, PNG, WebP, or AVIF originals to its folder, then run `./scripts/prepare.sh`.
+
+- The first image alphabetically is the large side-by-side product image.
+- The first four images alphabetically appear as fixed product-photo tiles (not a carousel).
+- Use filename prefixes such as `01-front.jpg`, `02-side.jpg`, and `03-detail.jpg` to control the order.
+
+The prepared files are committed under `src/assets/products/`; originals remain local and ignored by Git. Product and customer-build folders are separate: a file appears only in the matching product or customer-build category where you put its original.
 
 ## Edit the About Me page
 
@@ -95,18 +127,29 @@ Edit `src/content/site/about.json`.
 - `photoAlt` describes the main image for screen readers.
 - `metaDescription` controls the search description.
 
-To replace the main photo, put a new image at `photos-originals/brand/about-me.png` (JPEG, PNG, WebP, and AVIF are also accepted), then run `npm run photos:prepare`. The prepared file is written to `src/assets/brand/about-me.webp`, and Astro creates smaller responsive versions when the site builds.
+To replace the main photo, put a new image at `photos-originals/brand/about-me.png` (JPEG, PNG, WebP, and AVIF are also accepted), then run `./scripts/prepare.sh`. The prepared file is written to `src/assets/brand/about-me.webp`, and Astro creates smaller responsive versions when the site builds.
 
 ## Check an edit before publishing
 
-Run:
+Two commands cover the whole routine. First, prepare the site and start the local preview:
 
 ```sh
-npm run photos:prepare
-npm test
+./scripts/prepare.sh
 ```
 
-`npm test` checks the content, code, formatting rules, production build, internal links, and required SEO metadata. Do not publish if it fails.
+It prepares every photo and starts the local preview at <http://127.0.0.1:4321/>. Leave that Terminal window running while you review the site.
+
+Then, once the pages look right, publish them:
+
+```sh
+./scripts/updatesite.sh
+```
+
+That script validates and then publishes, so nothing goes online when a check fails. The next section has the details.
+
+### Refresh photos in the local site
+
+Astro updates text immediately, but new, moved, or removed photos must first be converted into the optimized WebP assets used by the site. Run `./scripts/prepare.sh` again after changing any photo folder. It prepares the photos and restarts the local preview so the new gallery files are visible.
 
 ## Google Search indexing
 
@@ -131,7 +174,7 @@ Use **URL inspection** to test and request indexing for the homepage, About page
 From the repository’s top-level folder, run:
 
 ```sh
-./runthescript.sh
+./scripts/updatesite.sh
 ```
 
 The Bash wrapper runs `edit/publish.command`, which automatically:
@@ -142,7 +185,7 @@ The Bash wrapper runs `edit/publish.command`, which automatically:
 4. Runs the complete validation suite and stops without publishing if a check fails.
 5. Commits every intended site change, synchronizes with GitHub, and pushes `main`.
 
-For a validation-only run that does not commit or push, use `./runthescript.sh --check`.
+For a validation-only run that does not commit or push, use `./scripts/updatesite.sh --check`.
 
 The script uses the existing GitHub login configured on this Mac. Pushing `main` starts the GitHub Pages workflow. Follow its result under the repository’s **Actions** tab: <https://github.com/jklock/KlockHoldingCo_GithubSites/actions>.
 

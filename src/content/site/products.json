@@ -1,0 +1,121 @@
+{
+  "metaDescription": "Competition shooting belts, magazine pouches, magnetic attachments, and custom 3D-printed gear from Klock Holding Co.",
+  "eyebrow": "Built for the match",
+  "heading": "Competition gear and custom builds.",
+  "intro": "Browse the current Klock Holding Co. gear lineup. Product photos, customer builds, videos, and printable models are added here as they become available.",
+  "products": [
+    {
+      "slug": "rover-idpa-belt",
+      "name": "ROVER IDPA Belt",
+      "summary": "A 1.5-inch, articulated competition belt that is lightweight, adjustable, and built for IDPA.",
+      "description": "The R.O.V.E.R. IDPA Belt is a standalone, 1.5-inch segmented belt designed to be printed at home and assembled with common hardware. Individual links are joined with M2 × 35 mm spring pins, then finished with a DAA ratcheting belt kit. Add or remove standard links to set the overall length, use a 0.75 link for a finer fit, and replace an individual link rather than replacing the whole belt. The current V5 links use revised hinge geometry for improved strength, lower weight, and smoother articulation; do not mix V4 and V5 links. The design stays within the current IDPA 1.75-inch width and 5/16-inch thickness limits.",
+      "photoAlt": "ROVER IDPA Belt by Klock Holding Co.",
+      "benefits": [
+        "Articulated links conform around the waist instead of acting like one rigid hoop.",
+        "Resize, repair, or reconfigure the belt one link at a time.",
+        "Designed around current IDPA width and thickness limits."
+      ],
+      "specifications": [
+        ["Belt width", "1.5 inches"],
+        [
+          "Construction",
+          "Printed articulated links with M2 × 35 mm spring pins"
+        ],
+        ["Closure", "DAA ratcheting belt kit"],
+        ["Current version", "V5 — do not mix with V4 links"]
+      ],
+      "configuration": [
+        "Choose the belt length by adding or removing standard links.",
+        "Use a 0.75 link for fine length adjustment.",
+        "Select the desired color and compatible attachments through Pewcentric."
+      ],
+      "purchaseNote": "Made-to-order competition gear. Confirm your size, color, and attachment choices before placing an order.",
+      "youtubeUrl": "",
+      "printablesUrl": "https://www.printables.com/model/1562682-the-rover-gun-belt-idpa"
+    },
+    {
+      "slug": "rover-uspsa-belt",
+      "name": "ROVER USPSA Belt",
+      "summary": "A modular ROVER belt setup configured for USPSA equipment and match-day adjustability.",
+      "description": "The ROVER USPSA Belt uses the same articulated, serviceable link concept as the IDPA ROVER, arranged for a USPSA competition setup. Printed belt sections are connected with M2 × 35 mm spring pins, allowing the belt to be resized, repaired, or reconfigured link by link instead of being treated as one fixed piece. A ratcheting belt kit closes and tensions the assembly, while the segmented construction lets it follow the body more naturally than a solid strip. The product photos show the current arrangement; the Printables library contains the related ROVER parts, mounting plates, and accessories as they are released.",
+      "photoAlt": "ROVER USPSA Belt by Klock Holding Co.",
+      "benefits": [
+        "Segmented construction follows the body while keeping a firm equipment platform.",
+        "Individual links make fit changes and repairs straightforward.",
+        "A ratcheting closure gives a repeatable match-day fit."
+      ],
+      "specifications": [
+        [
+          "Construction",
+          "Printed articulated links with M2 × 35 mm spring pins"
+        ],
+        ["Closure", "DAA ratcheting belt kit"],
+        ["Adjustment", "Add, remove, or replace individual links"],
+        ["Compatible ecosystem", "ROVER mounting plates and accessories"]
+      ],
+      "configuration": [
+        "Set the overall length by adding or removing links.",
+        "Use the product photos and Pewcentric options to choose the current USPSA setup.",
+        "Confirm your color and attachment choices before ordering."
+      ],
+      "purchaseNote": "Made to order. The specific attachment layout should be selected before checkout.",
+      "youtubeUrl": "",
+      "printablesUrl": "https://www.printables.com/@KlockHoldingCo/models"
+    },
+    {
+      "slug": "astro-magazine-pouch",
+      "name": "ASTRO Magazine Pouch",
+      "summary": "A modular magnetic magazine pouch with interchangeable bodies, mounts, and cant options.",
+      "description": "The ASTRO Magazine Pouch is the Klock Holding Co. MagDock V3 system: a magnetically retained competition pouch built from interchangeable printed bodies, mounting plates, and connectors. It mounts directly to Mini Tek-Lok or full-size Tek-Lok-compatible attachments, or pairs with KlockLok 360 for adjustable cant. The system uses common M4 hardware, M4 heat-set inserts, and an approximately 25–26 mm countersunk neodymium cup magnet, so wear parts and hardware can be replaced independently. Current tested configurations include Glock full-size 9 mm magazines, standard 1911 magazines, and optional spacers to tune the fit for the magazine geometry.",
+      "photoAlt": "ASTRO Magazine Pouch by Klock Holding Co.",
+      "benefits": [
+        "Swap bodies, mounting plates, and connectors without replacing the whole pouch.",
+        "Set the pouch directly on a Tek-Lok-compatible mount or add adjustable cant with KlockLok 360.",
+        "Replace magnets, inserts, or hardware independently when needed."
+      ],
+      "specifications": [
+        ["Retention", "25–26 mm countersunk neodymium cup magnet"],
+        ["Hardware", "M4 screws and M4 heat-set inserts"],
+        [
+          "Mounting",
+          "Mini or full-size Tek-Lok compatible; KlockLok 360 supported"
+        ],
+        ["Tested magazines", "Glock full-size 9 mm and standard 1911"]
+      ],
+      "configuration": [
+        "Choose the body and spacer combination for the magazine geometry.",
+        "Choose a Mini Tek-Lok, full-size Tek-Lok, or KlockLok 360 mounting setup.",
+        "Select the desired color and hardware configuration through Pewcentric."
+      ],
+      "purchaseNote": "Compatibility depends on the selected pouch body, magazine, and mounting option. Confirm those details before ordering.",
+      "youtubeUrl": "",
+      "printablesUrl": "https://www.printables.com/model/1763528-magnetic-magazine-pouch-magdock-v3"
+    },
+    {
+      "slug": "gromit-magnet-attachment",
+      "name": "GROMIT Magnet Attachment",
+      "summary": "A compact magnetic magazine holder for make-ready and other competition-use positions.",
+      "description": "The GROMIT Magnetic Mag Holder is an administrative, magnet-retained holder for a make-ready magazine or another non-retention-critical competition position. Its PETG inner body carries the magnet and mounting load, while the TPU outer shell protects the assembly from impacts and wear. It attaches to a Mini 2-Hole Tek-Lok-compatible mount with M4 hardware. Use one 32 mm countersunk neodymium cup magnet for most steel-bodied magazines, or two magnets for Glock polymer-bodied magazines where less steel is exposed. It is intended for competition and administrative handling—not duty, field, or concealed-carry retention.",
+      "photoAlt": "GROMIT Magnet Attachment by Klock Holding Co.",
+      "benefits": [
+        "Keeps a make-ready magazine accessible without a mechanical retention device.",
+        "PETG structure and TPU protection separate load-bearing and impact-protection jobs.",
+        "One- and two-magnet setups let you match retention to the magazine body."
+      ],
+      "specifications": [
+        ["Mount", "Mini 2-Hole Tek-Lok compatible"],
+        ["Core", "PETG inner body with TPU outer shell"],
+        ["Hardware", "M4 socket-head screws and M4 hex nuts"],
+        ["Magnet", "32 mm countersunk neodymium cup magnet"]
+      ],
+      "configuration": [
+        "Use one magnet for most steel-bodied magazines.",
+        "Use two magnets for Glock polymer-bodied magazines.",
+        "Choose the desired color and mounting configuration through Pewcentric."
+      ],
+      "purchaseNote": "For make-ready and other non-retention-critical competition positions only; it is not a duty, field, or concealed-carry retention holster.",
+      "youtubeUrl": "",
+      "printablesUrl": "https://www.printables.com/model/1763552-gromit-magnetic-mag-holder"
+    }
+  ]
+}

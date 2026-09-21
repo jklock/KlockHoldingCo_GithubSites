@@ -1,6 +1,6 @@
 # Klock Holding Co. website
 
-Production source for [www.klockholdingco.com](https://www.klockholdingco.com), a three-page static link hub for Klock Holding Co. Products link to Pewcentric for purchasing; the site has no cart, accounts, database, or backend.
+Production source for [www.klockholdingco.com](https://www.klockholdingco.com), a static Klock Holding Co. hub with product pages, customer builds, and external purchasing links. The site has no cart, accounts, database, or backend.
 
 For routine text edits, photo uploads, local preview, validation, publishing, and DNS instructions, use the [website editing guide](docs/USER_GUIDE.md).
 
@@ -51,11 +51,12 @@ Useful commands:
 ```text
 src/
   assets/
-    gear-gallery/                Prepared customer-build photos
+    customer-builds/             Prepared, categorized customer-build photos
+    products/                    Prepared product photos
     splitshot-gallery/           Prepared SplitShot screenshots
   components/                  Reusable presentation components
   content/
-    site/                      Editable copy for the three main pages
+    site/                      Editable copy and product catalog
   layouts/                     Shared HTML shell and metadata
   pages/                       Site routes
   site-config.ts               Navigation, social links, domain, and site name
@@ -71,7 +72,7 @@ Visible page text is stored in JSON under `src/content/site/`. The [website edit
 
 ### Add gallery photos
 
-Copy originals into `photos-originals/customer-builds/` or `photos-originals/splitshot/`, then run `npm run photos:prepare`. The command creates bounded WebP sources in the corresponding `src/assets/` gallery. Astro generates smaller responsive thumbnails during the production build. See the [website editing guide](docs/USER_GUIDE.md) for the complete workflow.
+Copy originals into a matching category under `photos-originals/customer-builds/`, `photos-originals/products/`, or `photos-originals/splitshot/`, then run `npm run photos:prepare`. The command creates bounded WebP sources in the corresponding `src/assets/` gallery. Astro generates smaller responsive thumbnails during the production build. See the [website editing guide](docs/USER_GUIDE.md) for the complete workflow.
 
 ### Change navigation, social links, or branding
 

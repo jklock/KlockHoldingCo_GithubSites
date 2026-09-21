@@ -25,5 +25,7 @@
   "splitshotEyebrow": "Software for editing your match footage simplified ",
   "splitshotHeading": "SplitShot",
   "splitshotText": "A local-first open-source tool for analyzing and editing competition shooting video. It's pretty cool.",
-  "splitshotButton": "View SplitShot on GitHub"
+  "splitshotButton": "View SplitShot on GitHub",
+  "splitshotActionHeading": "SplitShot in Action",
+  "splitshotActionUrl": "https://www.youtube.com/watch?v=IKIWKbP287w&list=PLc2Um_NXzvAHo0IRftkaKxy5Jmr9E-wEs&index=3"
 }
