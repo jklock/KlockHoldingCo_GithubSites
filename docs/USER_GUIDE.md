@@ -107,6 +107,20 @@ Edit `edit/product-catalog.json` for all product names, summaries, descriptions,
 - Leave either field empty (`""`) to hide it from the page.
 - `benefits`, `specifications`, `configuration`, and `purchaseNote` control the buying information below the photos. Keep the brackets, quotation marks, and commas intact; edit only the text.
 
+### Edit the "Make it yourself" section
+
+Each product page ends with the build details copied from its Printables page, under a "Make it yourself" heading. A product with no `makerBlocks` skips the whole section.
+
+Every entry in `makerBlocks` is one titled block, and the blocks appear on the page in the order you list them. Each block needs a `label` plus one of the following:
+
+- `rows`: `["Label", "Value"]` pairs, shown as a two-column list. Use it for design goals, print settings, bills of materials, part and link types, magnet or fit options, and specifications.
+- `steps`: one sentence per step, numbered in order. Use it for assembly.
+- `notes`: one sentence per bullet. Use it for fit and sizing, compatibility, field testing, care and maintenance, and future development.
+
+A block can also carry a `note`, a single closing paragraph printed under that block. Delete a block and it disappears from the page; delete `makerBlocks` entirely and the section goes away.
+
+The section eyebrow, heading, and intro live in the `maker` block at the top of the same file and are shared by every product, so edit those once rather than per product.
+
 ### Add product photos
 
 Each product has a matching folder in `edit/product-photos/`. Add JPEG, PNG, WebP, or AVIF originals to its folder, then run `./scripts/prepare.sh`.

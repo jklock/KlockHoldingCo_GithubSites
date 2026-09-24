@@ -14,6 +14,19 @@ export function getStaticPaths() {
 }
 
 const { product } = Astro.props;
+
+interface MakerBlock {
+  label: string;
+  rows?: [string, string][];
+  steps?: string[];
+  notes?: string[];
+  note?: string;
+}
+
+const maker = products.maker;
+const makerBlocks = (product as typeof product & { makerBlocks?: MakerBlock[] })
+  .makerBlocks;
+
 const productModules = import.meta.glob<{ default: ImageMetadata }>(
   '../../assets/products/**/*.{jpg,jpeg,png,webp,avif}',
   { eager: true },
@@ -141,45 +154,57 @@ const structuredData = {
           <InlineText text={product.description} />
         </p>
       </div>
-      <section
-        class="product-information"
-        aria-label={`${product.name} details`}
-      >
-        <div>
-          <p class="eyebrow">What it changes</p>
-          <ul class="benefit-list">
-            {product.benefits.map((benefit) => (
-              <li>
-                <InlineText text={benefit} />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p class="eyebrow">Specifications</p>
-          <dl class="specifications">
-            {product.specifications.map(([term, detail]) => (
-              <>
-                <dt>{term}</dt>
-                <dd>{detail}</dd>
-              </>
-            ))}
-          </dl>
-        </div>
-      </section>
+      {(product.benefits.length > 0 || product.specifications.length > 0) && (
+        <section
+          class="product-information"
+          aria-label={`${product.name} details`}
+        >
+          {product.benefits.length > 0 && (
+            <div>
+              <p class="eyebrow">What it changes</p>
+              <ul class="benefit-list">
+                {product.benefits.map((benefit) => (
+                  <li>
+                    <InlineText text={benefit} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {product.specifications.length > 0 && (
+            <div>
+              <p class="eyebrow">Specifications</p>
+              <dl class="specifications">
+                {product.specifications.map(([term, detail]) => (
+                  <>
+                    <dt>{term}</dt>
+                    <dd>{detail}</dd>
+                  </>
+                ))}
+              </dl>
+            </div>
+          )}
+        </section>
+      )}
       <section class="configuration-section">
-        <p class="eyebrow">Configure with confidence</p>
-        <h2>Choose the setup that fits.</h2>
-        <ul>
-          {product.configuration.map((item) => (
-            <li>
-              <InlineText text={item} />
-            </li>
-          ))}
-        </ul>
-        <p class="purchase-note">
-          <InlineText text={product.purchaseNote} />
-        </p>
+        {product.configuration.length > 0 && (
+          <>
+            <p class="eyebrow">Configure with confidence</p>
+            <h2>Choose the setup that fits.</h2>
+            <ul>
+              {product.configuration.map((item) => (
+                <li>
+                  <InlineText text={item} />
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+        {product.purchaseNote && (
+          <p class="purchase-note">
+            <InlineText text={product.purchaseNote} />
+          </p>
+        )}
         <div class="product-links">
           <a
             class="button"
@@ -211,6 +236,57 @@ const structuredData = {
           )}
         </div>
       </section>
+      {makerBlocks && makerBlocks.length > 0 && (
+        <section class="maker-section" aria-labelledby="maker-heading">
+          <p class="eyebrow">{maker.eyebrow}</p>
+          <h2 id="maker-heading">{maker.heading}</h2>
+          <p class="maker-intro">
+            <InlineText text={maker.intro} />
+          </p>
+          <div class="maker-grid">
+            {makerBlocks.map((block) => (
+              <div class="maker-block">
+                <h3>{block.label}</h3>
+                {block.rows && (
+                  <dl class="maker-list">
+                    {block.rows.map(([term, detail]) => (
+                      <>
+                        <dt>{term}</dt>
+                        <dd>
+                          <InlineText text={detail} />
+                        </dd>
+                      </>
+                    ))}
+                  </dl>
+                )}
+                {block.steps && (
+                  <ol class="maker-steps">
+                    {block.steps.map((step) => (
+                      <li>
+                        <InlineText text={step} />
+                      </li>
+                    ))}
+                  </ol>
+                )}
+                {block.notes && (
+                  <ul class="maker-notes">
+                    {block.notes.map((note) => (
+                      <li>
+                        <InlineText text={note} />
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {block.note && (
+                  <p class="maker-note">
+                    <InlineText text={block.note} />
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
       {youtubeEmbed && <iframe
         class="product-video"
         src={youtubeEmbed}
@@ -394,6 +470,83 @@ const structuredData = {
     gap: 0.75rem;
     margin-top: 1.5rem;
   }
+  .maker-section {
+    max-width: 55rem;
+    margin-top: clamp(3rem, 7vw, 6rem);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid var(--line);
+  }
+  .maker-intro {
+    max-width: 45rem;
+    color: var(--muted);
+    font-size: 1.1rem;
+  }
+  .maker-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.75rem, 4vw, 3rem);
+    margin-top: var(--space-5);
+  }
+  .maker-block h3 {
+    margin-bottom: var(--space-2);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .maker-list {
+    display: grid;
+    margin: 0;
+    border-top: 1px solid var(--line);
+  }
+  .maker-list dt {
+    padding-top: var(--space-2);
+    font-weight: 700;
+  }
+  .maker-list dd {
+    margin: 0;
+    padding-bottom: var(--space-2);
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .maker-steps,
+  .maker-notes {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .maker-steps {
+    counter-reset: maker-step;
+  }
+  .maker-steps li,
+  .maker-notes li {
+    position: relative;
+    padding-left: 1.75rem;
+  }
+  .maker-steps li {
+    counter-increment: maker-step;
+  }
+  .maker-steps li::before {
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    content: counter(maker-step) '.';
+    font-weight: 800;
+  }
+  .maker-notes li::before {
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    content: '→';
+    font-weight: 800;
+  }
+  .maker-note {
+    margin-top: var(--space-2);
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
   .product-video {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -425,7 +578,8 @@ const structuredData = {
   }
   @media (max-width: 56rem) {
     .product-hero,
-    .product-information {
+    .product-information,
+    .maker-grid {
       grid-template-columns: 1fr;
     }
   }

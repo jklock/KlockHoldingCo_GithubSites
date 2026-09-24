@@ -3,117 +3,608 @@
   "eyebrow": "Built for the match",
   "heading": "Competition gear and custom builds.",
   "intro": "Browse the current Klock Holding Co. gear lineup. Product photos, customer builds, videos, and printable models are added here as they become available.",
+  "maker": {
+    "eyebrow": "Make it yourself",
+    "heading": "Build it at home or order it finished.",
+    "intro": "Everything here prints on a consumer FDM printer and assembles with off-the-shelf hardware. The design goals, fit notes, print settings, hardware lists, assembly steps, and testing below cover the whole build."
+  },
   "products": [
     {
       "slug": "rover-idpa-belt",
       "name": "ROVER IDPA Belt",
-      "summary": "A 1.5-inch, articulated competition belt that is lightweight, adjustable, and built for IDPA.",
-      "description": "The R.O.V.E.R. IDPA Belt is a standalone, 1.5-inch segmented belt designed to be printed at home and assembled with common hardware. Individual links are joined with M2 × 35 mm spring pins, then finished with a DAA ratcheting belt kit. Add or remove standard links to set the overall length, use a 0.75 link for a finer fit, and replace an individual link rather than replacing the whole belt. The current V5 links use revised hinge geometry for improved strength, lower weight, and smoother articulation; do not mix V4 and V5 links. The design stays within the current IDPA 1.75-inch width and 5/16-inch thickness limits.",
+      "summary": "A 1.5-inch articulated competition gun belt for IDPA shooters, built around the 2026 IDPA rulebook.",
+      "description": "The R.O.V.E.R. IDPA Belt is a 1.5-inch articulated competition gun belt built for IDPA shooters and configured to conform to the rules in the 2026 IDPA rulebook. It's designed to be manufactured on a consumer FDM printer and assembled with inexpensive off-the-shelf hardware, so it can be built entirely at home or ordered finished. Instead of a traditional fiber or nylon belt, **hinged links** conform around your waist while still giving your holster, magazine pouches, and other accessories a rigid platform. The links are made from a high-strength polymer blend selected for rigidity, durability, and resistance to temperature, humidity, and impact, and they are joined with M2 × 35 mm spring pins. A **ratcheting closure** lets you dial in belt tension quickly and release it just as easily, and because links can be added, removed, or individually replaced, the belt is simple to size, maintain, and repair. No traditional inner/outer belt system required. Under the 2026 IDPA rulebook, belts may not exceed **1.75 inches (44.45 mm)** in width or **5/16 inch (7.94 mm)** in thickness, and this design fits comfortably within both limits. None of this is theoretical. Klock Holding Co.'s own belt has been through roughly 30 IDPA matches without a broken or cracked link, walking pin, or measurable hinge wear, and R.O.V.E.R. belts are in use by competitors with different waist sizes, body types, and equipment configurations. Each belt can be made in a variety of colors and textures, with multiple link sizes and a 0.75 link to dial in the fit for your hips. Nothing beyond the ratchet kit is proprietary: the links print at home, and every other part is bought off the shelf.",
       "photoAlt": "ROVER IDPA Belt by Klock Holding Co.",
       "benefits": [
-        "Articulated links conform around the waist instead of acting like one rigid hoop.",
-        "Resize, repair, or reconfigure the belt one link at a time.",
-        "Designed around current IDPA width and thickness limits."
+        "Hinged links conform around your waist instead of acting like one rigid hoop.",
+        "Resize, repair, or reconfigure the belt one link at a time, and replace a single link instead of the whole belt.",
+        "Built to the 2026 IDPA rulebook and stays within the current 1.75-inch width and 5/16-inch thickness limits.",
+        "Lightweight without giving up rigidity or durability.",
+        "Prints at home on a consumer FDM printer and assembles with basic hand tools.",
+        "No proprietary hardware beyond the ratchet kit, and no inner/outer belt system to buy."
       ],
       "specifications": [
         ["Belt width", "1.5 inches"],
         [
           "Construction",
-          "Printed articulated links with M2 × 35 mm spring pins"
+          "Printed articulated links joined with M2 × 35 mm spring pins"
         ],
+        ["Mounting", "Built around Tek-Lok connectors"],
+        [
+          "Link material",
+          "High-strength polymer blend, selected for resistance to temperature, humidity, and impact"
+        ],
+        ["Link sizes", "Standard links plus a 0.75 link for fine fit"],
         ["Closure", "DAA ratcheting belt kit"],
-        ["Current version", "V5 — do not mix with V4 links"]
+        ["Inner belt", "None. R.O.V.E.R. is a standalone belt"],
+        ["Printable", "Yes. Runs on a consumer FDM printer."],
+        ["Tools needed", "1/16 in punch and a small mallet"],
+        ["IDPA limits", "1.75 in (44.45 mm) wide, 5/16 in (7.94 mm) thick"]
       ],
       "configuration": [
-        "Choose the belt length by adding or removing standard links.",
-        "Use a 0.75 link for fine length adjustment.",
-        "Select the desired color and compatible attachments through Pewcentric."
+        "Every belt is made to order for the individual shooter, so we'll start by talking about how R.O.V.E.R. works, your current setup, and what you need.",
+        "Send a photo of your current belt so we can review your holster, magazine pouches, attachment methods, and positioning before anything is built.",
+        "We'll work through link sizes, colors, textures, mounting options, and equipment placement, then agree on the final configuration — there are no generic, off-the-shelf R.O.V.E.R. belts.",
+        "Sizing comes down to link count rather than a size chart, with a 0.75 link to take up the last bit of adjustment.",
+        "Colors and textures can be mixed link by link. Tell us where you want the emphasis and we'll lay it out.",
+        "Prefer to make it yourself? The model files, hardware requirements, print settings, and assembly instructions are public on Printables."
       ],
-      "purchaseNote": "Made-to-order competition gear. Confirm your size, color, and attachment choices before placing an order.",
+      "purchaseNote": "Made to order. Confirm link sizes, colors, textures, and mounting options before ordering — every R.O.V.E.R. is configured individually for the person wearing it.",
+      "makerBlocks": [
+        {
+          "label": "Design goals",
+          "rows": [
+            ["Lightweight", "Without giving up durability."],
+            ["Fully modular", "Every link is individually replaceable."],
+            [
+              "Easy to resize",
+              "Add or remove links instead of ordering a new belt."
+            ],
+            [
+              "Inexpensive hardware",
+              "Commonly available, off-the-shelf parts."
+            ],
+            ["Printable at home", "Runs on a consumer FDM printer."],
+            ["Simple assembly", "Basic hand tools only."],
+            ["No proprietary parts", "Nothing beyond the ratchet kit."]
+          ]
+        },
+        {
+          "label": "Field testing",
+          "notes": [
+            "Klock Holding Co.'s own belt has run roughly 30 IDPA matches with no broken links, no cracked links, no pins walking out, and no measurable hinge wear.",
+            "No issues during movement or stage transitions.",
+            "R.O.V.E.R. belts are in use by other competitors across different waist sizes, body types, and equipment setups."
+          ]
+        },
+        {
+          "label": "Fit and sizing",
+          "notes": [
+            "Build to your measurement, then adjust on the belt. Add or remove base links to get close.",
+            "A 0.75 link covers the last bit of adjustment, so a belt that's slightly off is a five-minute fix instead of a reprint.",
+            "Multiple link sizes are available to dial in the fit for your hips."
+          ]
+        },
+        {
+          "label": "Recommended print settings",
+          "rows": [
+            ["Material", "Tinmorry PETG-GF"],
+            ["Layer height", "0.12 mm"],
+            ["Walls", "6"],
+            ["Top layers", "6"],
+            ["Bottom layers", "6"],
+            ["Infill", "100%"]
+          ],
+          "note": "These settings were used through development and testing and gave the best balance of strength, stiffness, and long-term durability. Print the links solid. This isn't a part to save time on."
+        },
+        {
+          "label": "BOM",
+          "rows": [
+            [
+              "25+ × M2 × 35 mm spring (roll) pins",
+              "The current build uses 29 of them. A 50-pack covers a belt with spares left over."
+            ],
+            ["1 × DAA ratcheting belt kit", "Buckle and ratchet strap."],
+            ["1 × 1/16 in punch", "For installing and removing pins."],
+            ["1 × small hammer or mallet", "Brass, nylon, or steel."],
+            ["Optional: lubricant", "Improves articulation between the links."]
+          ]
+        },
+        {
+          "label": "Link types",
+          "rows": [
+            [
+              "Base link",
+              "Standard full-length connecting link used through most of the belt."
+            ],
+            [
+              "0.75 link",
+              "Roughly two-thirds the length of a standard link, for fine length adjustments."
+            ],
+            [
+              "Belt keeper link",
+              "Retains the loose end of the ratchet strap after the belt is tightened."
+            ],
+            [
+              "Ratchet strap link",
+              "Connects the printed belt to the DAA ratchet hardware."
+            ]
+          ]
+        },
+        {
+          "label": "Assembly",
+          "steps": [
+            "Orient each link with the reduced pin bore facing downward.",
+            "Assemble the links and insert an M2 × 35 mm spring pin from the top.",
+            "Drive the pin until it sits flush with the top surface.",
+            "With a 1/16 in punch, lightly seat the pin until it bottoms against the reduced bore.",
+            "Repeat until the belt reaches the length you need."
+          ],
+          "note": "Each hinge has one reduced-diameter pin bore that works as both the installation stop and the access point for pin removal. To remove a pin, insert the punch into that bore from the bottom of the link and drive the pin upward. The opening can be tight at first — that's intentional, so the pin stays retained."
+        },
+        {
+          "label": "Compatibility",
+          "notes": [
+            "These links are **not** compatible with DAA Lynx components. Both systems use articulated links, but the pin diameter, hinge spacing, and overall geometry are different enough that parts from the two can't be mixed.",
+            "The belt is built around Tek-Lok connectors and pairs with the ROVER mounting plates and accessories."
+          ]
+        },
+        {
+          "label": "Care and maintenance",
+          "notes": [
+            "A little lubricant worked between the rotating joints noticeably improves articulation and makes the belt easier to put on, take off, and adjust while wearing. Use something compatible with your filament.",
+            "Replace a single link instead of the whole belt when something wears out. Pins push out with the same punch used to install them.",
+            "Keep a few spare spring pins on hand. They cost almost nothing and a belt can be back in service in minutes."
+          ]
+        }
+      ],
       "youtubeUrl": "",
       "printablesUrl": "https://www.printables.com/model/1562682-the-rover-gun-belt-idpa"
     },
     {
       "slug": "rover-uspsa-belt",
       "name": "ROVER USPSA Belt",
-      "summary": "A modular ROVER belt setup configured for USPSA equipment and match-day adjustability.",
-      "description": "The ROVER USPSA Belt uses the same articulated, serviceable link concept as the IDPA ROVER, arranged for a USPSA competition setup. Printed belt sections are connected with M2 × 35 mm spring pins, allowing the belt to be resized, repaired, or reconfigured link by link instead of being treated as one fixed piece. A ratcheting belt kit closes and tensions the assembly, while the segmented construction lets it follow the body more naturally than a solid strip. The product photos show the current arrangement; the Printables library contains the related ROVER parts, mounting plates, and accessories as they are released.",
+      "summary": "A 1.5-inch articulated competition gun belt for USPSA, with thicker links and more mounting options than the IDPA version.",
+      "description": "The ROVER USPSA Belt is a 1.5-inch articulated competition gun belt designed and optimized for USPSA. It's designed to be manufactured on a consumer FDM printer and assembled with inexpensive off-the-shelf hardware, so it can be built entirely at home or ordered finished. Instead of a traditional fiber or nylon belt, **hinged links** conform around your waist while providing a rigid platform for your holster, magazine pouches, and other accessories. The links are made from a high-strength polymer blend selected for rigidity, durability, and resistance to temperature, humidity, and impact. A **ratcheting closure** lets you quickly dial in belt tension and release it just as easily, and links can be added, removed, or individually replaced, making the belt simple to size, maintain, and repair. The articulated design provides a secure setup that mates to your existing inner velcro belt. The USPSA version has many more link options than the IDPA version, including direct-through, mount-to, and in-between sized links, so attachments can mount to and through the belt. The links are also **30% thicker**, providing a very rigid, stable, and strong platform for your gear, and the belt rolls up. None of this is theoretical. R.O.V.E.R. USPSA belts are in use by active competitors with different waist sizes, body types, and equipment configurations, and each belt can be made in a variety of colors and textures with multiple link sizes available to dial in the fit for your hips. Nothing beyond the ratchet kit is proprietary: the links print at home, and every other part is bought off the shelf.",
       "photoAlt": "ROVER USPSA Belt by Klock Holding Co.",
       "benefits": [
-        "Segmented construction follows the body while keeping a firm equipment platform.",
-        "Individual links make fit changes and repairs straightforward.",
-        "A ratcheting closure gives a repeatable match-day fit."
+        "Hinged links conform around your waist and mate to an existing inner velcro belt.",
+        "Links are 30% thicker than the IDPA version for a very rigid, stable platform that still rolls up.",
+        "Many more link options than the IDPA version, including direct-through, mount-to, and in-between sizes, for mounting attachments to and through the belt.",
+        "Prints at home on a consumer FDM printer and assembles with basic hand tools and off-the-shelf hardware.",
+        "No proprietary hardware beyond the ratchet kit. Links, pins, and hardware are all replaceable on their own.",
+        "Rolls up for transport and storage when it comes off."
       ],
       "specifications": [
+        ["Belt width", "1.5 inches"],
         [
           "Construction",
-          "Printed articulated links with M2 × 35 mm spring pins"
+          "Printed articulated links joined with M2 × 35 mm spring pins"
         ],
+        [
+          "Link material",
+          "High-strength polymer blend, selected for resistance to temperature, humidity, and impact"
+        ],
+        ["Link thickness", "30% thicker than the IDPA version"],
         ["Closure", "DAA ratcheting belt kit"],
-        ["Adjustment", "Add, remove, or replace individual links"],
-        ["Compatible ecosystem", "ROVER mounting plates and accessories"]
+        ["Mounting", "Direct-through, mount-to, and in-between sized links"],
+        ["Inner belt", "Mates to an existing inner velcro belt"],
+        ["Link options", "A wider range of sizes than the IDPA version"],
+        ["Printable", "Yes. Runs on a consumer FDM printer."],
+        ["Tools needed", "1/16 in punch and a small mallet"]
       ],
       "configuration": [
-        "Set the overall length by adding or removing links.",
-        "Use the product photos and Pewcentric options to choose the current USPSA setup.",
-        "Confirm your color and attachment choices before ordering."
+        "Every belt is made to order for the individual shooter, so we'll start by talking about how R.O.V.E.R. works, your current setup, and what you need.",
+        "Send a photo of your current belt so we can review your holster, magazine pouches, attachment methods, and positioning before anything is built.",
+        "We'll work through link sizes, colors, textures, mounting options, and equipment placement, then agree on the final configuration — there are no generic, off-the-shelf R.O.V.E.R. belts.",
+        "Sizing comes down to link count rather than a size chart, and the thicker link set offers more intermediate sizes to work with.",
+        "There are many specialty links in use on this belt, so communication before anything is made is required — the last thing we want is a belt that won't work with your current gear.",
+        "Prefer to make it yourself? The model files, hardware requirements, print settings, and assembly instructions are public on Printables."
       ],
-      "purchaseNote": "Made to order. The specific attachment layout should be selected before checkout.",
+      "purchaseNote": "Made to order. Because this belt uses many specialty links, the link and mounting configuration is confirmed before anything is built.",
+      "makerBlocks": [
+        {
+          "label": "Design goals",
+          "rows": [
+            ["Rigid platform", "Links 30% thicker than the IDPA version."],
+            ["Fully modular", "Every link is individually replaceable."],
+            [
+              "Easy to resize",
+              "Add or remove links instead of ordering a new belt."
+            ],
+            [
+              "Inexpensive hardware",
+              "Commonly available, off-the-shelf parts."
+            ],
+            ["Printable at home", "Runs on a consumer FDM printer."],
+            ["Simple assembly", "Basic hand tools only."],
+            ["No proprietary parts", "Nothing beyond the ratchet kit."]
+          ]
+        },
+        {
+          "label": "Field testing",
+          "notes": [
+            "R.O.V.E.R. USPSA belts are in use by active competitors across different waist sizes, body types, and equipment configurations.",
+            "No broken links, cracked links, walking pins, or measurable hinge wear have shown up in use.",
+            "The belt rolls up for transport, so it doesn't need to ride flat between matches."
+          ]
+        },
+        {
+          "label": "Fit and sizing",
+          "notes": [
+            "Set the length with base links, then use the finer sizes to bring the fit in. The USPSA link set has more intermediate sizes to work with than the IDPA version.",
+            "The belt mates to your existing inner velcro belt, so there's nothing to buy and nothing to re-learn.",
+            "A belt that's slightly off is a five-minute fix instead of a reprint."
+          ]
+        },
+        {
+          "label": "Recommended print settings",
+          "rows": [
+            ["Material", "Tinmorry PETG-GF"],
+            ["Layer height", "0.12 mm"],
+            ["Walls", "6"],
+            ["Top layers", "6"],
+            ["Bottom layers", "6"],
+            ["Infill", "100%"]
+          ],
+          "note": "These settings were used through development and testing and gave the best balance of strength, stiffness, and long-term durability. Print the links solid. This isn't a part to save time on."
+        },
+        {
+          "label": "BOM",
+          "rows": [
+            [
+              "25+ × M2 × 35 mm spring (roll) pins",
+              "The count depends on belt length and the link mix. A 50-pack covers a belt with spares left over."
+            ],
+            ["1 × DAA ratcheting belt kit", "Buckle and ratchet strap."],
+            ["1 × 1/16 in punch", "For installing and removing pins."],
+            ["1 × small hammer or mallet", "Brass, nylon, or steel."],
+            ["Optional: lubricant", "Improves articulation between the links."]
+          ]
+        },
+        {
+          "label": "Link types",
+          "rows": [
+            [
+              "Base link",
+              "Standard full-length connecting link used through most of the belt."
+            ],
+            [
+              "0.75 link",
+              "Roughly two-thirds the length of a standard link, for fine length adjustments."
+            ],
+            [
+              "Direct-through and mount-to links",
+              "Let attachments mount to and through the belt instead of only on the outside."
+            ],
+            [
+              "In-between sized links",
+              "Intermediate lengths that split the difference between the standard link sizes."
+            ],
+            [
+              "Belt keeper link",
+              "Retains the loose end of the ratchet strap after the belt is tightened."
+            ],
+            [
+              "Ratchet strap link",
+              "Connects the printed belt to the DAA ratchet hardware."
+            ]
+          ]
+        },
+        {
+          "label": "Assembly",
+          "steps": [
+            "Orient each link with the reduced pin bore facing downward.",
+            "Assemble the links and insert an M2 × 35 mm spring pin from the top.",
+            "Drive the pin until it sits flush with the top surface.",
+            "With a 1/16 in punch, lightly seat the pin until it bottoms against the reduced bore.",
+            "Repeat until the belt reaches the length you need."
+          ],
+          "note": "Each hinge has one reduced-diameter pin bore that works as both the installation stop and the access point for pin removal. To remove a pin, insert the punch into that bore from the bottom of the link and drive the pin upward. The opening can be tight at first — that's intentional, so the pin stays retained."
+        },
+        {
+          "label": "Compatibility",
+          "notes": [
+            "These links are **not** compatible with DAA Lynx components. Both systems use articulated links, but the pin diameter, hinge spacing, and overall geometry are different enough that parts from the two can't be mixed.",
+            "The USPSA version uses a thicker link set with many more options than the IDPA version, so the two belts don't share the same links.",
+            "The belt mates to an existing inner velcro belt."
+          ]
+        },
+        {
+          "label": "Care and maintenance",
+          "notes": [
+            "A little lubricant worked between the rotating joints noticeably improves articulation and makes the belt easier to put on, take off, and adjust while wearing. Use something compatible with your filament.",
+            "Replace a single link instead of the whole belt when something wears out. Pins push out with the same punch used to install them.",
+            "Keep a few spare spring pins on hand. They cost almost nothing and a belt can be back in service in minutes."
+          ]
+        }
+      ],
       "youtubeUrl": "",
       "printablesUrl": "https://www.printables.com/@KlockHoldingCo/models"
     },
     {
       "slug": "astro-magazine-pouch",
       "name": "ASTRO Magazine Pouch",
-      "summary": "A modular magnetic magazine pouch with interchangeable bodies, mounts, and cant options.",
-      "description": "The ASTRO Magazine Pouch is the Klock Holding Co. MagDock V3 system: a magnetically retained competition pouch built from interchangeable printed bodies, mounting plates, and connectors. It mounts directly to Mini Tek-Lok or full-size Tek-Lok-compatible attachments, or pairs with KlockLok 360 for adjustable cant. The system uses common M4 hardware, M4 heat-set inserts, and an approximately 25–26 mm countersunk neodymium cup magnet, so wear parts and hardware can be replaced independently. Current tested configurations include Glock full-size 9 mm magazines, standard 1911 magazines, and optional spacers to tune the fit for the magazine geometry.",
+      "summary": "A modular magnetic magazine pouch you can print in matching or contrasting colors.",
+      "description": "ASTRO is a modular magnetic magazine pouch: every part prints on its own, so you can build it in matching or contrasting colors and swap a single part instead of rebuilding the whole pouch. It holds the magazine with a magnet rather than a mechanical latch, so the draw is fast and there's nothing to defeat on the way out. It mounts with **Tek-Lok Mini** compatible attachments or the **KlockLok** connector, and it uses common M4 and M2 hardware and the same 25–26 mm countersunk neodymium cup magnets used in the other magnetic pouches. Because the body, backplate, and sides are separate pieces, the pouch is easy to repair and easy to adapt: right now it's set up for **Glock magazines**, and more bodies are coming.",
       "photoAlt": "ASTRO Magazine Pouch by Klock Holding Co.",
       "benefits": [
-        "Swap bodies, mounting plates, and connectors without replacing the whole pouch.",
-        "Set the pouch directly on a Tek-Lok-compatible mount or add adjustable cant with KlockLok 360.",
-        "Replace magnets, inserts, or hardware independently when needed."
+        "Prints in matching or contrasting colors, because every part is a separate piece.",
+        "Magnetically retained, so there's no latch to defeat on the draw.",
+        "Mounts with Tek-Lok Mini compatible attachments or the KlockLok connector.",
+        "Replace one part instead of rebuilding the pouch when something wears out.",
+        "Common M4 and M2 hardware. Nothing proprietary.",
+        "Set up for Glock magazines now, with more bodies on the way."
       ],
       "specifications": [
-        ["Retention", "25–26 mm countersunk neodymium cup magnet"],
-        ["Hardware", "M4 screws and M4 heat-set inserts"],
+        ["Mounting", "Tek-Lok Mini compatible, or KlockLok connector"],
+        ["Retention", "Magnetic. No mechanical latch to defeat"],
+        ["Magnets", "2 × 25–26 mm countersunk neodymium cup magnets"],
+        ["Hardware", "M4 and M2 screws with heat-set inserts"],
+        ["Nuts", "1 × M4 nut for KlockLok, or 4 × M4 nuts for Tek Mount Mini"],
+        ["Magazines", "Glock only for now"],
         [
-          "Mounting",
-          "Mini or full-size Tek-Lok compatible; KlockLok 360 supported"
+          "Colors",
+          "Parts print separately, so they can be matched or contrasted"
         ],
-        ["Tested magazines", "Glock full-size 9 mm and standard 1911"]
+        ["Printable", "Yes. Runs on a consumer FDM printer."]
       ],
       "configuration": [
-        "Choose the body and spacer combination for the magazine geometry.",
-        "Choose a Mini Tek-Lok, full-size Tek-Lok, or KlockLok 360 mounting setup.",
-        "Select the desired color and hardware configuration through Pewcentric."
+        "Choose the mounting path: Tek-Lok Mini compatible attachments, or the KlockLok connector.",
+        "Pick your colors. Every part prints on its own, so matching and contrasting combinations are easy.",
+        "Right now this is set up for Glock magazines. Tell us what you run and we'll say whether it fits.",
+        "The BOM lists exact screw and insert sizes, and everything on it is off the shelf.",
+        "Prefer to make it yourself? The files, print settings, and assembly steps are public on Printables."
       ],
-      "purchaseNote": "Compatibility depends on the selected pouch body, magazine, and mounting option. Confirm those details before ordering.",
+      "purchaseNote": "Set up for Glock magazines only right now. Confirm your magazine and mounting setup before ordering.",
+      "makerBlocks": [
+        {
+          "label": "Design goals",
+          "rows": [
+            [
+              "Customizable",
+              "Every part prints separately, so colors can be matched or contrasted."
+            ],
+            [
+              "Easy to repair",
+              "Swap a single part instead of rebuilding the pouch."
+            ],
+            [
+              "Easy to adapt",
+              "A new magazine pattern is a new body, not a new pouch."
+            ],
+            [
+              "Common hardware",
+              "M4 and M2 fasteners and heat-set inserts, all off the shelf."
+            ],
+            ["Printable at home", "Runs on a consumer FDM printer."]
+          ]
+        },
+        {
+          "label": "What's in the files",
+          "rows": [
+            ["Pouch parts", "Everything needed to assemble the pouch."],
+            ["Inner plates", "KlockLok and Tek Mount Mini inner plates."],
+            ["Backplate", "KlockLok backplate."],
+            [
+              "More options",
+              "Other KlockLok backplate sizes are on the Printables page."
+            ]
+          ]
+        },
+        {
+          "label": "Recommended print settings",
+          "rows": [
+            ["Nozzle diameter", "0.4 mm"],
+            ["Layer height", "0.20 mm"],
+            ["Walls", "6"],
+            [
+              "Infill",
+              "25–40% gyroid or cubic. The finished pouches run 100%."
+            ],
+            ["Supports", "Snug"],
+            ["Brim", "Optional"]
+          ],
+          "note": "Orient the parts to minimize supports."
+        },
+        {
+          "label": "BOM",
+          "rows": [
+            [
+              "2 × 25–26 mm countersunk neodymium cup magnets",
+              "DIYMAG or equivalent."
+            ],
+            ["M4 screws", "6, 8, 10, and 12 mm."],
+            ["M4 heat-set inserts", "2 and 6 mm."],
+            ["M2 screws", "4, 6, and 8 mm."],
+            ["M2 heat-set inserts", "3 and 4 mm."],
+            ["M4 nuts", "1 for KlockLok, or 4 for Tek Mount Mini."],
+            ["Optional", "Sandpaper, a butane torch, and basic hand tools."]
+          ]
+        },
+        {
+          "label": "Assembly",
+          "steps": [
+            "Print everything.",
+            "Install the heat-set inserts.",
+            "Install the magnets in the backplate.",
+            "Attach the backplate to the bottom.",
+            "Attach both sides to the bottom and the backplate.",
+            "Attach the front to the sides and the bottom.",
+            "Install the bumpers and your preferred belt mount."
+          ],
+          "note": "That's the whole build. Let me know how it works for you."
+        },
+        {
+          "label": "Heat-set insert locations",
+          "rows": [
+            ["Backplate", "M4 × 6 mm on the sides, M4 × 2 mm on the bottom."],
+            ["Bottom", "M2 × 4 mm on the sides, M2 × 3 mm on the front."],
+            [
+              "Inner side",
+              "M2 × 4 mm on the front, M2 × 3 mm inside for the bumper."
+            ],
+            ["Outer side", "Same as the inner side."],
+            ["Front", "None."]
+          ]
+        }
+      ],
       "youtubeUrl": "",
-      "printablesUrl": "https://www.printables.com/model/1763528-magnetic-magazine-pouch-magdock-v3"
+      "printablesUrl": "https://www.printables.com/model/1853911-the-astro-magnetic-magazine-pouch"
     },
     {
       "slug": "gromit-magnet-attachment",
       "name": "GROMIT Magnet Attachment",
-      "summary": "A compact magnetic magazine holder for make-ready and other competition-use positions.",
-      "description": "The GROMIT Magnetic Mag Holder is an administrative, magnet-retained holder for a make-ready magazine or another non-retention-critical competition position. Its PETG inner body carries the magnet and mounting load, while the TPU outer shell protects the assembly from impacts and wear. It attaches to a Mini 2-Hole Tek-Lok-compatible mount with M4 hardware. Use one 32 mm countersunk neodymium cup magnet for most steel-bodied magazines, or two magnets for Glock polymer-bodied magazines where less steel is exposed. It is intended for competition and administrative handling—not duty, field, or concealed-carry retention.",
+      "summary": "A compact, magnet-retained magazine holder for make-ready and other competition-use positions.",
+      "description": "The GROMIT Magnetic Mag Holder is an administrative, magnet-retained holder for a make-ready magazine or another non-retention-critical competition position. It combines a rigid PETG inner body with a TPU outer shell: the PETG core supports the magnet, carries the structural loads, and provides the mounting interface, while the TPU shell protects the magnet assembly, improves durability, and absorbs minor impacts. It uses inexpensive off-the-shelf hardware and attaches to a Mini 2-Hole Tek-Lok compatible mount with M4 socket-head cap screws and hex nuts, so it fits a wide range of competition belt attachment systems. Use one 32 mm countersunk neodymium cup magnet for most steel-bodied magazines, or two magnets for Glock polymer-bodied magazines where less steel is exposed. It's intended for competition and administrative handling—not duty, field, or concealed-carry retention.",
       "photoAlt": "GROMIT Magnet Attachment by Klock Holding Co.",
       "benefits": [
         "Keeps a make-ready magazine accessible without a mechanical retention device.",
         "PETG structure and TPU protection separate load-bearing and impact-protection jobs.",
-        "One- and two-magnet setups let you match retention to the magazine body."
+        "One- and two-magnet setups let you match retention to the magazine body.",
+        "Verified with factory Glock magazines in every currently produced caliber, including +5 extended base pads.",
+        "Hardware is standard M4. Nothing proprietary, and nothing that's hard to find.",
+        "Two printed parts and a handful of hardware, so a damaged shell or a spent magnet is a small fix."
       ],
       "specifications": [
         ["Mount", "Mini 2-Hole Tek-Lok compatible"],
         ["Core", "PETG inner body with TPU outer shell"],
-        ["Hardware", "M4 socket-head screws and M4 hex nuts"],
-        ["Magnet", "32 mm countersunk neodymium cup magnet"]
+        ["Hardware", "M4 socket-head cap screws and M4 hex nuts"],
+        ["Screw length", "6–10 mm"],
+        ["Magnet", "32 mm (1.26 in) countersunk neodymium cup magnet"],
+        [
+          "Magnet count",
+          "One for steel-bodied magazines, two for Glock polymer bodies"
+        ],
+        ["Retention", "Magnetic. No mechanical latch to defeat"],
+        ["Printable", "Yes. PETG body and TPU shell on a consumer FDM printer."]
       ],
       "configuration": [
         "Use one magnet for most steel-bodied magazines.",
         "Use two magnets for Glock polymer-bodied magazines.",
+        "Mount it on a Mini 2-Hole Tek-Lok compatible belt attachment, or tell us what you run and we'll confirm the mount.",
+        "Screws between 6 mm and 10 mm work. Length isn't critical as long as they engage without bottoming out.",
         "Choose the desired color and mounting configuration through Pewcentric."
       ],
-      "purchaseNote": "For make-ready and other non-retention-critical competition positions only; it is not a duty, field, or concealed-carry retention holster.",
+      "purchaseNote": "For make-ready and other non-retention-critical competition positions only; it's not a duty, field, or concealed-carry retention holster.",
+      "makerBlocks": [
+        {
+          "label": "Design goals",
+          "rows": [
+            [
+              "Simple construction",
+              "As few parts as possible, all commonly available."
+            ],
+            [
+              "Fast magazine access",
+              "No mechanical retention where quick access matters more than security."
+            ],
+            [
+              "Durable construction",
+              "A PETG core for structure, a TPU shell for impacts."
+            ],
+            [
+              "Easy maintenance",
+              "Hardware comes off and goes back on without reprinting the body."
+            ],
+            [
+              "Flexible fit",
+              "One design covers the full range of Glock pistol magazines."
+            ]
+          ]
+        },
+        {
+          "label": "Recommended print settings",
+          "rows": [
+            ["Material", "PETG inner body, TPU outer shell"],
+            ["Nozzle diameter", "0.4 mm"],
+            ["Layer height", "0.20 mm"],
+            ["Wall count", "4 inner body, 3 outer shell"],
+            ["Infill", "25–40% gyroid or cubic inner body, 100% outer shell"],
+            ["Supports", "None"],
+            ["Print orientation", "As modeled"],
+            ["Brim", "Optional"]
+          ]
+        },
+        {
+          "label": "BOM",
+          "rows": [
+            [
+              "1–2 × countersunk neodymium cup magnet",
+              "32 mm (1.26 in), approximately 110 lb pull. DIYMAG or equivalent manufacturer."
+            ],
+            [
+              "2 × M4 socket head cap screws",
+              "6–10 mm. McMaster-Carr, Misumi, or a local hardware supplier."
+            ],
+            [
+              "2 × M4 hex nuts",
+              "DIN 934. McMaster-Carr, Misumi, or a local hardware supplier."
+            ],
+            [
+              "1 × belt attachment",
+              "Mini 2-Hole Tek-Lok compatible. Optional. Blade-Tech or compatible manufacturer."
+            ]
+          ]
+        },
+        {
+          "label": "Parts",
+          "rows": [
+            [
+              "PETG inner body",
+              "Supports the magnet, carries structural loads, and provides the mounting interface."
+            ],
+            [
+              "TPU outer shell",
+              "Protects the magnet assembly, improves durability, and absorbs minor impacts."
+            ]
+          ]
+        },
+        {
+          "label": "Intended use",
+          "notes": [
+            "Built for a make-ready magazine or another non-retention-critical position on your rig.",
+            "Suited to competition and administrative handling, including USPSA. Both magazine orientations were tested: cartridges facing toward the body and away from it.",
+            "Not a retention holster. It's not intended for duty, field, or concealed carry, and it shouldn't be relied on as one."
+          ]
+        },
+        {
+          "label": "Assembly",
+          "steps": [
+            "Print the inner body in PETG.",
+            "Print the outer shell in TPU.",
+            "Install the magnet(s) into the PETG body.",
+            "Press the M4 hex nuts into the printed hex pockets.",
+            "Secure the assembly using M4 socket head cap screws.",
+            "Attach the completed holster to a Mini 2-Hole Tek-Lok compatible belt mount."
+          ],
+          "note": "The printed hex pockets are designed as a light press fit — gently tap the nuts into place before installing the screws if needed. Fastener length isn't critical: any M4 screw between approximately 6 mm and 10 mm that provides adequate thread engagement without bottoming out should function correctly."
+        },
+        {
+          "label": "Magnet configuration",
+          "rows": [
+            ["One magnet", "Most steel-bodied magazines."],
+            ["Two magnets", "Glock polymer-bodied magazines."]
+          ],
+          "note": "A single magnet provides adequate retention for most steel-bodied magazines. Glock magazines benefit from a second magnet because the polymer body reduces the amount of exposed steel available for magnetic attraction, which lowers holding force."
+        },
+        {
+          "label": "Compatibility and testing",
+          "notes": [
+            "**Tested:** factory Glock pistol magazines in every currently produced caliber, including 9×19, .40 S&W, .357 SIG, .45 GAP, 10 mm Auto, and .45 ACP.",
+            "**Tested:** fully loaded Glock 9 mm magazines with +5 aluminum extensions from Henning Group and Taran Tactical Innovations (TTI), securely retained in the two-magnet configuration during normal movement and range use.",
+            "**Tested:** both competition orientations, with cartridges facing toward the body (“bullets in”) and away from it (“bullets out”). Both configurations function without modification.",
+            "**Verified:** Mini 2-Hole Tek-Lok compatible mounting pattern.",
+            "Retention recommendations are based on practical range testing rather than instrumented pull-force measurements."
+          ]
+        },
+        {
+          "label": "Future development",
+          "notes": [
+            "Future revisions might add more mounting patterns, support for other magnet sizes, and variants for more magazine families. I'll test non-Glock magazines as those platforms come available."
+          ]
+        }
+      ],
       "youtubeUrl": "",
       "printablesUrl": "https://www.printables.com/model/1763552-gromit-magnetic-mag-holder"
     }
