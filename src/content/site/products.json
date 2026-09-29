@@ -13,7 +13,7 @@
       "slug": "rover-idpa-belt",
       "name": "ROVER IDPA Belt",
       "summary": "A 1.5-inch articulated competition gun belt for IDPA shooters, built around the 2026 IDPA rulebook.",
-      "description": "The R.O.V.E.R. IDPA Belt is a 1.5-inch articulated competition gun belt built for IDPA shooters and configured to conform to the rules in the 2026 IDPA rulebook. It's designed to be manufactured on a consumer FDM printer and assembled with inexpensive off-the-shelf hardware, so it can be built entirely at home or ordered finished. Instead of a traditional fiber or nylon belt, **hinged links** conform around your waist while still giving your holster, magazine pouches, and other accessories a rigid platform. The links are made from a high-strength polymer blend selected for rigidity, durability, and resistance to temperature, humidity, and impact, and they are joined with M2 × 35 mm spring pins. A **ratcheting closure** lets you dial in belt tension quickly and release it just as easily, and because links can be added, removed, or individually replaced, the belt is simple to size, maintain, and repair. No traditional inner/outer belt system required. Under the 2026 IDPA rulebook, belts may not exceed **1.75 inches (44.45 mm)** in width or **5/16 inch (7.94 mm)** in thickness, and this design fits comfortably within both limits. None of this is theoretical. Klock Holding Co.'s own belt has been through roughly 30 IDPA matches without a broken or cracked link, walking pin, or measurable hinge wear, and R.O.V.E.R. belts are in use by competitors with different waist sizes, body types, and equipment configurations. Each belt can be made in a variety of colors and textures, with multiple link sizes and a 0.75 link to dial in the fit for your hips. Nothing beyond the ratchet kit is proprietary: the links print at home, and every other part is bought off the shelf.",
+      "description": "The R.O.V.E.R. IDPA Belt is a 1.5-inch articulated competition gun belt built for IDPA shooters and configured to conform to the rules in the 2026 IDPA rulebook. It's designed to be manufactured on a consumer FDM printer and assembled with inexpensive off-the-shelf hardware, so it can be built entirely at home or ordered finished. Instead of a traditional fiber or nylon belt, **hinged links** conform around your waist while still giving your holster, magazine pouches, and other accessories a rigid platform. The links are made from a high-strength polymer blend selected for rigidity, durability, and resistance to temperature, humidity, and impact, and they are joined with M2 × 35 mm spring pins. A **ratcheting closure** lets you dial in belt tension quickly and release it just as easily, and because links can be added, removed, or individually replaced, the belt is simple to size, maintain, and repair. No traditional inner/outer belt system required. Under the 2026 IDPA rulebook, belts may not exceed **1.75 inches (44.45 mm)** in width or **5/16 inch (7.94 mm)** in thickness, and this design fits comfortably within both limits. Each belt can be made in a variety of colors and textures, with multiple link sizes and a 0.75 link to dial in the fit for your hips. Nothing beyond the ratchet kit is proprietary: the links print at home, and every other part is bought off the shelf.",
       "photoAlt": "ROVER IDPA Belt by Klock Holding Co.",
       "benefits": [
         "Hinged links conform around your waist instead of acting like one rigid hoop.",
@@ -67,14 +67,6 @@
             ["Printable at home", "Runs on a consumer FDM printer."],
             ["Simple assembly", "Basic hand tools only."],
             ["No proprietary parts", "Nothing beyond the ratchet kit."]
-          ]
-        },
-        {
-          "label": "Field testing",
-          "notes": [
-            "Klock Holding Co.'s own belt has run roughly 30 IDPA matches with no broken links, no cracked links, no pins walking out, and no measurable hinge wear.",
-            "No issues during movement or stage transitions.",
-            "R.O.V.E.R. belts are in use by other competitors across different waist sizes, body types, and equipment setups."
           ]
         },
         {
@@ -164,13 +156,13 @@
     {
       "slug": "rover-uspsa-belt",
       "name": "ROVER USPSA Belt",
-      "summary": "A 1.5-inch articulated competition gun belt for USPSA, with thicker links and more mounting options than the IDPA version.",
-      "description": "The ROVER USPSA Belt is a 1.5-inch articulated competition gun belt designed and optimized for USPSA. It's designed to be manufactured on a consumer FDM printer and assembled with inexpensive off-the-shelf hardware, so it can be built entirely at home or ordered finished. Instead of a traditional fiber or nylon belt, **hinged links** conform around your waist while providing a rigid platform for your holster, magazine pouches, and other accessories. The links are made from a high-strength polymer blend selected for rigidity, durability, and resistance to temperature, humidity, and impact. A **ratcheting closure** lets you quickly dial in belt tension and release it just as easily, and links can be added, removed, or individually replaced, making the belt simple to size, maintain, and repair. The articulated design provides a secure setup that mates to your existing inner velcro belt. The USPSA version has many more link options than the IDPA version, including direct-through, mount-to, and in-between sized links, so attachments can mount to and through the belt. The links are also **30% thicker**, providing a very rigid, stable, and strong platform for your gear, and the belt rolls up. None of this is theoretical. R.O.V.E.R. USPSA belts are in use by active competitors with different waist sizes, body types, and equipment configurations, and each belt can be made in a variety of colors and textures with multiple link sizes available to dial in the fit for your hips. Nothing beyond the ratchet kit is proprietary: the links print at home, and every other part is bought off the shelf.",
+      "summary": "A 1.5-inch articulated competition gun belt for USPSA, with thicker links and a wide range of mounting options.",
+      "description": "The ROVER USPSA Belt is a 1.5-inch articulated competition gun belt designed and optimized for USPSA. It's designed to be manufactured on a consumer FDM printer and assembled with inexpensive off-the-shelf hardware, so it can be built entirely at home or ordered finished. Instead of a traditional fiber or nylon belt, **hinged links** conform around your waist while providing a rigid platform for your holster, magazine pouches, and other accessories. The links are made from a high-strength polymer blend selected for rigidity, durability, and resistance to temperature, humidity, and impact. A **ratcheting closure** lets you quickly dial in belt tension and release it just as easily, and links can be added, removed, or individually replaced, making the belt simple to size, maintain, and repair. The articulated design provides a secure setup that mates to your existing inner velcro belt. The belt has a wide range of link options, including direct-through, mount-to, and in-between sized links, so attachments can mount to and through the belt. The links are also **thicker than a standard link set**, providing a very rigid, stable, and strong platform for your gear, and the belt rolls up. Each belt can be made in a variety of colors and textures with multiple link sizes available to dial in the fit for your hips. Nothing beyond the ratchet kit is proprietary: the links print at home, and every other part is bought off the shelf.",
       "photoAlt": "ROVER USPSA Belt by Klock Holding Co.",
       "benefits": [
         "Hinged links conform around your waist and mate to an existing inner velcro belt.",
-        "Links are 30% thicker than the IDPA version for a very rigid, stable platform that still rolls up.",
-        "Many more link options than the IDPA version, including direct-through, mount-to, and in-between sizes, for mounting attachments to and through the belt.",
+        "Thicker links make for a very rigid, stable platform.",
+        "A wide range of link options, including direct-through, mount-to, and in-between sizes, for mounting attachments to and through the belt.",
         "Prints at home on a consumer FDM printer and assembles with basic hand tools and off-the-shelf hardware.",
         "No proprietary hardware beyond the ratchet kit. Links, pins, and hardware are all replaceable on their own.",
         "Rolls up for transport and storage when it comes off."
@@ -185,11 +177,11 @@
           "Link material",
           "High-strength polymer blend, selected for resistance to temperature, humidity, and impact"
         ],
-        ["Link thickness", "30% thicker than the IDPA version"],
+        ["Link thickness", "Heavier link set for a rigid platform"],
         ["Closure", "DAA ratcheting belt kit"],
         ["Mounting", "Direct-through, mount-to, and in-between sized links"],
         ["Inner belt", "Mates to an existing inner velcro belt"],
-        ["Link options", "A wider range of sizes than the IDPA version"],
+        ["Link options", "Plenty of intermediate sizes for fine fit"],
         ["Printable", "Yes. Runs on a consumer FDM printer."],
         ["Tools needed", "1/16 in punch and a small mallet"]
       ],
@@ -197,7 +189,7 @@
         "Every belt is made to order for the individual shooter, so we'll start by talking about how R.O.V.E.R. works, your current setup, and what you need.",
         "Send a photo of your current belt so we can review your holster, magazine pouches, attachment methods, and positioning before anything is built.",
         "We'll work through link sizes, colors, textures, mounting options, and equipment placement, then agree on the final configuration — there are no generic, off-the-shelf R.O.V.E.R. belts.",
-        "Sizing comes down to link count rather than a size chart, and the thicker link set offers more intermediate sizes to work with.",
+        "Sizing comes down to link count rather than a size chart, and the link set offers plenty of intermediate sizes to work with.",
         "There are many specialty links in use on this belt, so communication before anything is made is required — the last thing we want is a belt that won't work with your current gear.",
         "Prefer to make it yourself? The model files, hardware requirements, print settings, and assembly instructions are public on Printables."
       ],
@@ -206,7 +198,10 @@
         {
           "label": "Design goals",
           "rows": [
-            ["Rigid platform", "Links 30% thicker than the IDPA version."],
+            [
+              "Rigid platform",
+              "A heavier link set that stays rigid under load."
+            ],
             ["Fully modular", "Every link is individually replaceable."],
             [
               "Easy to resize",
@@ -222,17 +217,9 @@
           ]
         },
         {
-          "label": "Field testing",
-          "notes": [
-            "R.O.V.E.R. USPSA belts are in use by active competitors across different waist sizes, body types, and equipment configurations.",
-            "No broken links, cracked links, walking pins, or measurable hinge wear have shown up in use.",
-            "The belt rolls up for transport, so it doesn't need to ride flat between matches."
-          ]
-        },
-        {
           "label": "Fit and sizing",
           "notes": [
-            "Set the length with base links, then use the finer sizes to bring the fit in. The USPSA link set has more intermediate sizes to work with than the IDPA version.",
+            "Set the length with base links, then use the finer sizes to bring the fit in. The link set has plenty of intermediate sizes to work with.",
             "The belt mates to your existing inner velcro belt, so there's nothing to buy and nothing to re-learn.",
             "A belt that's slightly off is a five-minute fix instead of a reprint."
           ]
@@ -306,7 +293,6 @@
           "label": "Compatibility",
           "notes": [
             "These links are **not** compatible with DAA Lynx components. Both systems use articulated links, but the pin diameter, hinge spacing, and overall geometry are different enough that parts from the two can't be mixed.",
-            "The USPSA version uses a thicker link set with many more options than the IDPA version, so the two belts don't share the same links.",
             "The belt mates to an existing inner velcro belt."
           ]
         },
@@ -462,7 +448,7 @@
         "Keeps a make-ready magazine accessible without a mechanical retention device.",
         "PETG structure and TPU protection separate load-bearing and impact-protection jobs.",
         "One- and two-magnet setups let you match retention to the magazine body.",
-        "Verified with factory Glock magazines in every currently produced caliber, including +5 extended base pads.",
+        "Fits factory Glock magazines in every currently produced caliber, including +5 extended base pads.",
         "Hardware is standard M4. Nothing proprietary, and nothing that's hard to find.",
         "Two printed parts and a handful of hardware, so a damaged shell or a spent magnet is a small fix."
       ],
@@ -564,7 +550,7 @@
           "label": "Intended use",
           "notes": [
             "Built for a make-ready magazine or another non-retention-critical position on your rig.",
-            "Suited to competition and administrative handling, including USPSA. Both magazine orientations were tested: cartridges facing toward the body and away from it.",
+            "Suited to competition and administrative handling, including USPSA. Works with either magazine orientation: cartridges facing toward the body, or away from it.",
             "Not a retention holster. It's not intended for duty, field, or concealed carry, and it shouldn't be relied on as one."
           ]
         },
@@ -587,16 +573,6 @@
             ["Two magnets", "Glock polymer-bodied magazines."]
           ],
           "note": "A single magnet provides adequate retention for most steel-bodied magazines. Glock magazines benefit from a second magnet because the polymer body reduces the amount of exposed steel available for magnetic attraction, which lowers holding force."
-        },
-        {
-          "label": "Compatibility and testing",
-          "notes": [
-            "**Tested:** factory Glock pistol magazines in every currently produced caliber, including 9×19, .40 S&W, .357 SIG, .45 GAP, 10 mm Auto, and .45 ACP.",
-            "**Tested:** fully loaded Glock 9 mm magazines with +5 aluminum extensions from Henning Group and Taran Tactical Innovations (TTI), securely retained in the two-magnet configuration during normal movement and range use.",
-            "**Tested:** both competition orientations, with cartridges facing toward the body (“bullets in”) and away from it (“bullets out”). Both configurations function without modification.",
-            "**Verified:** Mini 2-Hole Tek-Lok compatible mounting pattern.",
-            "Retention recommendations are based on practical range testing rather than instrumented pull-force measurements."
-          ]
         },
         {
           "label": "Future development",
